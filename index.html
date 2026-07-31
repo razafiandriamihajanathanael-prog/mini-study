@@ -100,7 +100,9 @@
       toast.textContent=message;toast.classList.add('show');
       setTimeout(()=>toast.classList.remove('show'),2200);
     }
-    document.getElementById('startBtn').addEventListener('click',()=>notify('Next step: onboarding setup'));
+    document.getElementByid("startBtn").addEventListener("click", () => {
+    window.location.href = "onboarding.html";
+});
     document.getElementById('loginBtn').addEventListener('click',()=>notify('Login screen will be added next'));
   </script>
 </body>
