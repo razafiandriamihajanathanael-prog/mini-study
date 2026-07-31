@@ -81,12 +81,16 @@ background:#5B21B6;
 
 <p>Let's personalize your Mini Study experience.</p>
 
-<button class="primary">
+<button class="primary" id="continueBtn">
 Continue
 </button>
 
 </div>
-
+<script>
+document.getElementById("continueBtn").addEventListener("click", function () {
+    window.location.href = "study-field.html";
+});
+</script>
 </body>
 
 </html>
