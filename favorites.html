@@ -113,7 +113,30 @@ color:#e11d48;
 
 </style>
 </head>
+<script>
+const favorites = JSON.parse(localStorage.getItem("miniStudyFavorites")) || [];
+const favoritesGrid = document.getElementById("favoritesGrid");
+const emptyMessage = document.getElementById("emptyMessage");
 
+if (favorites.length === 0) {
+    emptyMessage.style.display = "block";
+} else {
+    emptyMessage.style.display = "none";
+
+    favorites.forEach(function(favorite) {
+        const card = document.createElement("div");
+        card.className = "card";
+
+        card.innerHTML = `
+            <div class="tag">${favorite.course}</div>
+            <h2>${favorite.title}</h2>
+            <p>${favorite.text}</p>
+        `;
+
+        favoritesGrid.appendChild(card);
+    });
+}
+</script>
 <body>
 
 <div class="container">
@@ -124,19 +147,11 @@ color:#e11d48;
 Your saved study cards will appear here.
 </p>
 
-<div class="grid">
+<div class="grid" id="favoritesGrid"></div>
 
-<div class="card">
-
-<div class="tag">Peregrine</div>
-
-<h2>SWOT Analysis</h2>
-
-<p>
-Strengths and Weaknesses are internal factors.
-Opportunities and Threats are external factors.
-</p>
-
+<div id="emptyMessage">
+<p>No favorites yet.</p>
+<p>Tap the ❤️ on any study card to save it here.</p>
 </div>
 
 <div class="card">
@@ -179,6 +194,36 @@ A company that meets all four gains a sustainable competitive advantage.
 </a>
 
 </nav>
+<script>
 
+const favorites = JSON.parse(localStorage.getItem("miniStudyFavorites")) || [];
+
+const grid = document.getElementById("favoritesGrid");
+
+const empty = document.getElementById("emptyMessage");
+
+if (favorites.length === 0) {
+
+    empty.style.display = "block";
+
+} else {
+
+    empty.style.display = "none";
+
+    favorites.forEach(function(item){
+
+        grid.innerHTML += `
+        <div class="card">
+            <div class="tag">${item.course}</div>
+            <h2>${item.title}</h2>
+            <p>${item.text}</p>
+        </div>
+        `;
+
+    });
+
+}
+
+</script>
 </body>
 </html>

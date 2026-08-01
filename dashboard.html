@@ -729,15 +729,34 @@ function showMessage(message){
 }
 
 function toggleFavorite(button, courseName){
-  button.classList.toggle("active");
 
-  if(button.classList.contains("active")){
-    button.textContent = "♥";
-    showMessage(courseName + " added to favorites.");
-  }else{
-    button.textContent = "♡";
-    showMessage(courseName + " removed from favorites.");
-  }
+    let favorites = JSON.parse(localStorage.getItem("miniStudyFavorites")) || [];
+
+    if(button.classList.contains("active")){
+
+        button.classList.remove("active");
+        button.textContent = "♡";
+
+        favorites = favorites.filter(item => item.course !== courseName);
+
+        showMessage(courseName + " removed from favorites.");
+
+    }else{
+
+        button.classList.add("active");
+        button.textContent = "♥";
+
+        favorites.push({
+            course: courseName,
+            title: courseName,
+            text: "Saved from Mini Study"
+        });
+
+        showMessage(courseName + " added to favorites.");
+    }
+
+    localStorage.setItem("miniStudyFavorites", JSON.stringify(favorites));
+}
 }
 
 function completeGoal(){
