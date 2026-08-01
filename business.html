@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Business Courses</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+min-height:100vh;
+padding:30px;
+background:
+radial-gradient(circle at 10% 10%, rgba(196,181,253,.55), transparent 28%),
+radial-gradient(circle at 90% 85%, rgba(147,197,253,.50), transparent 30%),
+linear-gradient(145deg,#f8fafc,#eef2ff,#eff6ff);
+color:#0f172a;
+}
+
+.page{
+max-width:1100px;
+margin:auto;
+}
+
+.back{
+display:inline-block;
+margin-bottom:24px;
+text-decoration:none;
+font-weight:bold;
+color:#6d28d9;
+}
+
+.header{
+padding:32px;
+border-radius:28px;
+margin-bottom:28px;
+color:white;
+background:linear-gradient(135deg,#4c1d95,#6d28d9,#2563eb);
+box-shadow:0 20px 45px rgba(76,29,149,.25);
+}
+
+.header h1{
+font-size:42px;
+margin-bottom:10px;
+}
+
+.header p{
+font-size:18px;
+opacity:.9;
+}
+
+.course-grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:22px;
+}
+
+.course-card{
+display:block;
+padding:28px;
+min-height:250px;
+border-radius:26px;
+text-decoration:none;
+color:#0f172a;
+box-shadow:0 15px 35px rgba(15,23,42,.12);
+transition:.3s;
+}
+
+.course-card:hover{
+transform:translateY(-8px) scale(1.01);
+box-shadow:0 24px 50px rgba(15,23,42,.18);
+}
+
+.peregrine{
+background:linear-gradient(145deg,#fff7cc,#fde68a);
+}
+
+.strategy{
+background:linear-gradient(145deg,#ede9fe,#c4b5fd);
+}
+
+.course-icon{
+font-size:46px;
+margin-bottom:18px;
+}
+
+.course-card h2{
+font-size:27px;
+margin-bottom:10px;
+}
+
+.course-card p{
+line-height:1.6;
+color:#475569;
+margin-bottom:18px;
+}
+
+.tag{
+display:inline-block;
+padding:7px 12px;
+border-radius:999px;
+font-size:13px;
+font-weight:bold;
+background:rgba(255,255,255,.65);
+}
+
+@media(max-width:700px){
+.course-grid{
+grid-template-columns:1fr;
+}
+
+.header h1{
+font-size:32px;
+}
+}
+</style>
+</head>
+
+<body>
+
+<main class="page">
+
+<a class="back" href="study-field.html">← Back to Study Fields</a>
+
+<section class="header">
+<h1>📚 Business</h1>
+<p>Choose a mini section, then study the course through colorful post-it summaries.</p>
+</section>
+
+<section class="course-grid">
+
+<a class="course-card peregrine" href="notes.html">
+<div class="course-icon">🎓</div>
+<h2>Peregrine Assessment</h2>
+<p>Review economics, accounting, finance, management, marketing, strategy, ethics, statistics, and information systems.</p>
+<span class="tag">12 colorful post-it notes</span>
+</a>
+
+<a class="course-card strategy" href="strategic-management.html">
+<div class="course-icon">🌍</div>
+<h2>Strategic Management in a Globalized Economy</h2>
+<p>Study global strategy, company analysis, competitive environments, financial health, SWOT, VRIO, and capstone integration.</p>
+<span class="tag">6 colorful post-it notes</span>
+</a>
+
+</section>
+
+</main>
+
+</body>
+</html>
