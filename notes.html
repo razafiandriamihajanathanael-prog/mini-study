@@ -3,54 +3,269 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mini Notes</title>
+
+<title>Peregrine Mini Notes</title>
 
 <style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+}
 
 body{
-font-family:Arial,sans-serif;
-background:#f5f5f5;
-padding:30px;
+background:#fffaf0;
+padding:24px;
+color:#1f2937;
 }
 
-.card{
-background:white;
-padding:20px;
+.page{
+max-width:1100px;
+margin:auto;
+}
+
+.header{
+background:#fde68a;
+padding:28px;
+border-radius:22px;
+margin-bottom:24px;
+box-shadow:0 8px 20px rgba(0,0,0,.12);
+}
+
+.header h1{
+font-size:34px;
+margin-bottom:8px;
+}
+
+.header p{
+font-size:18px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:18px;
+}
+
+.note{
+padding:22px;
+border-radius:18px;
+min-height:250px;
+box-shadow:0 8px 18px rgba(0,0,0,.12);
+transform:rotate(-1deg);
+}
+
+.note:nth-child(even){
+transform:rotate(1deg);
+}
+
+.yellow{background:#fef3c7;}
+.pink{background:#fbcfe8;}
+.green{background:#d9f99d;}
+.blue{background:#bae6fd;}
+.purple{background:#e9d5ff;}
+.mint{background:#ccfbf1;}
+
+.number{
+font-weight:bold;
+font-size:24px;
+margin-bottom:10px;
+}
+
+.note h2{
+font-size:22px;
+margin-bottom:12px;
+}
+
+.note p,
+.note li{
+font-size:16px;
+line-height:1.5;
+}
+
+.note ul{
+padding-left:20px;
+}
+
+.tip{
+margin-top:16px;
+padding:12px;
+border:2px solid rgba(31,41,55,.5);
+border-radius:12px;
+background:rgba(255,255,255,.35);
+font-weight:bold;
+}
+
+.back{
+display:inline-block;
 margin-bottom:20px;
-border-radius:15px;
-box-shadow:0 5px 15px rgba(0,0,0,.1);
+text-decoration:none;
+font-weight:bold;
+color:#6d28d9;
 }
 
-h1{
-margin-bottom:25px;
+@media(max-width:900px){
+.grid{
+grid-template-columns:repeat(2,1fr);
+}
 }
 
+@media(max-width:600px){
+.grid{
+grid-template-columns:1fr;
+}
+
+.header h1{
+font-size:27px;
+}
+}
 </style>
-
 </head>
 
 <body>
 
-<h1>📚 Mini Notes</h1>
+<div class="page">
 
-<div class="card">
-<h2>Business</h2>
-<p>Business is the activity of producing goods or services to satisfy customer needs while earning a profit.</p>
+<a class="back" href="dashboard.html">← Back to Dashboard</a>
+
+<div class="header">
+<h1>How to Succeed & Beat the Peregrine Test</h1>
+<p>Peregrine Assessment Study Guide</p>
 </div>
 
-<div class="card">
-<h2>Marketing</h2>
-<p>Marketing is the process of creating, communicating, and delivering value to customers.</p>
+<div class="grid">
+
+<div class="note yellow">
+<div class="number">1</div>
+<h2>What is the Peregrine Assessment?</h2>
+<p>A comprehensive MBA exam that tests your foundational knowledge across all core business disciplines.</p>
+<div class="tip">Exam Tip: Think broad, not deep.</div>
 </div>
 
-<div class="card">
-<h2>Finance</h2>
-<p>Finance focuses on managing money, investments, budgeting, and financial planning.</p>
+<div class="note pink">
+<div class="number">2</div>
+<h2>How to Succeed</h2>
+<ul>
+<li>Understand definitions</li>
+<li>Know relationships</li>
+<li>Focus on business vocabulary</li>
+<li>Do not memorize every formula</li>
+<li>Manage your time</li>
+</ul>
+<div class="tip">Textbook-standard answers are usually best.</div>
 </div>
 
-<div class="card">
-<h2>Hospitality</h2>
-<p>Hospitality is about providing exceptional service and memorable guest experiences.</p>
+<div class="note green">
+<div class="number">3</div>
+<h2>Subjects Covered</h2>
+<ul>
+<li>Economics</li>
+<li>Accounting</li>
+<li>Finance</li>
+<li>Management</li>
+<li>Marketing</li>
+<li>Global Business</li>
+<li>Strategy</li>
+<li>Legal and Ethics</li>
+<li>Statistics</li>
+<li>Information Systems</li>
+</ul>
+</div>
+
+<div class="note blue">
+<div class="number">4</div>
+<h2>Economics Overview</h2>
+<p>Economics studies how people, businesses, and governments allocate scarce resources.</p>
+<ul>
+<li>Supply and demand</li>
+<li>Market structures</li>
+<li>GDP and inflation</li>
+<li>Trade and exchange rates</li>
+</ul>
+</div>
+
+<div class="note yellow">
+<div class="number">5</div>
+<h2>Supply and Demand</h2>
+<p>Equilibrium happens where supply equals demand.</p>
+<div class="tip">Higher demand usually raises price when supply stays the same.</div>
+</div>
+
+<div class="note pink">
+<div class="number">6</div>
+<h2>Price Elasticity</h2>
+<p>Elasticity measures how sensitive quantity demanded is to a price change.</p>
+<ul>
+<li>High elasticity: customers react strongly</li>
+<li>Low elasticity: customers react less</li>
+</ul>
+</div>
+
+<div class="note green">
+<div class="number">7</div>
+<h2>Market Structures</h2>
+<ul>
+<li>Perfect competition: many firms</li>
+<li>Monopoly: one dominant firm</li>
+<li>Oligopoly: few major firms</li>
+<li>Monopolistic competition: many differentiated firms</li>
+</ul>
+</div>
+
+<div class="note blue">
+<div class="number">8</div>
+<h2>GDP and Inflation</h2>
+<p>GDP is the total value of goods and services produced.</p>
+<ul>
+<li>Nominal GDP uses current prices</li>
+<li>Real GDP uses constant prices</li>
+<li>Inflation is measured by CPI</li>
+</ul>
+</div>
+
+<div class="note yellow">
+<div class="number">9</div>
+<h2>Fiscal vs. Monetary Policy</h2>
+<p><strong>Fiscal policy:</strong> government spending and taxes.</p>
+<p><strong>Monetary policy:</strong> central bank decisions about money supply and interest rates.</p>
+</div>
+
+<div class="note purple">
+<div class="number">10</div>
+<h2>Accounting Overview</h2>
+<ul>
+<li>Income Statement: performance over time</li>
+<li>Balance Sheet: financial position at one point</li>
+<li>Cash Flow Statement: cash inflows and outflows</li>
+</ul>
+<div class="tip">Assets = Liabilities + Equity</div>
+</div>
+
+<div class="note mint">
+<div class="number">11</div>
+<h2>Financial Ratios</h2>
+<ul>
+<li>Liquidity: current ratio, quick ratio</li>
+<li>Profitability: gross margin, ROA, ROE</li>
+<li>Leverage: debt-to-equity</li>
+<li>Efficiency: inventory turnover</li>
+</ul>
+</div>
+
+<div class="note pink">
+<div class="number">12</div>
+<h2>Final Exam Tips</h2>
+<ul>
+<li>Questions are mostly conceptual</li>
+<li>Choose the most standard answer</li>
+<li>Eliminate clearly wrong choices</li>
+<li>Stay calm and focused</li>
+<li>Treat it like a closed-book test</li>
+</ul>
+</div>
+
+</div>
 </div>
 
 </body>
