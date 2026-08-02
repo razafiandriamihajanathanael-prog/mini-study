@@ -7,7 +7,6 @@
 <title>Favorites</title>
 
 <style>
-
 *{
 margin:0;
 padding:0;
@@ -75,6 +74,31 @@ line-height:1.6;
 color:#475569;
 }
 
+.remove-btn{
+margin-top:18px;
+padding:10px 14px;
+border:none;
+border-radius:12px;
+background:#fee2e2;
+color:#be123c;
+font-weight:bold;
+cursor:pointer;
+}
+
+.remove-btn:hover{
+background:#fecdd3;
+}
+
+#emptyMessage{
+text-align:center;
+margin-top:50px;
+color:#64748b;
+}
+
+#emptyMessage h2{
+margin-bottom:10px;
+}
+
 .bottom-nav{
 position:fixed;
 bottom:20px;
@@ -90,6 +114,7 @@ background:rgba(255,255,255,.95);
 backdrop-filter:blur(18px);
 border-radius:24px;
 box-shadow:0 15px 40px rgba(0,0,0,.15);
+z-index:999;
 }
 
 .nav-item{
@@ -100,6 +125,8 @@ text-decoration:none;
 color:#64748b;
 font-size:24px;
 font-weight:bold;
+padding:8px 12px;
+border-radius:16px;
 }
 
 .nav-item span{
@@ -107,36 +134,13 @@ font-size:12px;
 margin-top:4px;
 }
 
-.active{
-color:#e11d48;
+.nav-item.active{
+color:white;
+background:linear-gradient(135deg,#6d28d9,#2563eb);
 }
-
 </style>
 </head>
-<script>
-const favorites = JSON.parse(localStorage.getItem("miniStudyFavorites")) || [];
-const favoritesGrid = document.getElementById("favoritesGrid");
-const emptyMessage = document.getElementById("emptyMessage");
 
-if (favorites.length === 0) {
-    emptyMessage.style.display = "block";
-} else {
-    emptyMessage.style.display = "none";
-
-    favorites.forEach(function(favorite) {
-        const card = document.createElement("div");
-        card.className = "card";
-
-        card.innerHTML = `
-            <div class="tag">${favorite.course}</div>
-            <h2>${favorite.title}</h2>
-            <p>${favorite.text}</p>
-        `;
-
-        favoritesGrid.appendChild(card);
-    });
-}
-</script>
 <body>
 
 <div class="container">
@@ -144,29 +148,14 @@ if (favorites.length === 0) {
 <h1>❤️ Favorites</h1>
 
 <p class="subtitle">
-Your saved study cards will appear here.
+Your saved courses and study cards will appear here.
 </p>
 
 <div class="grid" id="favoritesGrid"></div>
 
 <div id="emptyMessage">
-<p>No favorites yet.</p>
-<p>Tap the ❤️ on any study card to save it here.</p>
-</div>
-
-<div class="card">
-
-<div class="tag">Strategic Management</div>
-
-<h2>VRIO Framework</h2>
-
-<p>
-Valuable • Rare • Inimitable • Organized
-A company that meets all four gains a sustainable competitive advantage.
-</p>
-
-</div>
-
+<h2>No favorites yet</h2>
+<p>Tap the heart on any course or study card to save it here.</p>
 </div>
 
 </div>
@@ -194,36 +183,57 @@ A company that meets all four gains a sustainable competitive advantage.
 </a>
 
 </nav>
+
 <script>
+let favorites =
+JSON.parse(localStorage.getItem("miniStudyFavorites")) || [];
 
-const favorites = JSON.parse(localStorage.getItem("miniStudyFavorites")) || [];
+const favoritesGrid = document.getElementById("favoritesGrid");
+const emptyMessage = document.getElementById("emptyMessage");
 
-const grid = document.getElementById("favoritesGrid");
+function displayFavorites(){
 
-const empty = document.getElementById("emptyMessage");
+    favoritesGrid.innerHTML = "";
 
-if (favorites.length === 0) {
+    if(favorites.length === 0){
+        emptyMessage.style.display = "block";
+        return;
+    }
 
-    empty.style.display = "block";
+    emptyMessage.style.display = "none";
 
-} else {
+    favorites.forEach(function(item, index){
 
-    empty.style.display = "none";
+        const card = document.createElement("div");
+        card.className = "card";
 
-    favorites.forEach(function(item){
-
-        grid.innerHTML += `
-        <div class="card">
+        card.innerHTML = `
             <div class="tag">${item.course}</div>
             <h2>${item.title}</h2>
             <p>${item.text}</p>
-        </div>
+            <button class="remove-btn" onclick="removeFavorite(${index})">
+                Remove from Favorites
+            </button>
         `;
 
+        favoritesGrid.appendChild(card);
     });
-
 }
 
+function removeFavorite(index){
+
+    favorites.splice(index, 1);
+
+    localStorage.setItem(
+        "miniStudyFavorites",
+        JSON.stringify(favorites)
+    );
+
+    displayFavorites();
+}
+
+displayFavorites();
 </script>
+
 </body>
 </html>
