@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mini Study - Profile</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#eef2ff,#f8fafc,#ffffff);
+padding:30px;
+color:#1e293b;
+}
+
+.container{
+max-width:1100px;
+margin:auto;
+padding-bottom:120px;
+}
+
+.profile-card{
+background:linear-gradient(135deg,#6D28D9,#2563EB);
+color:white;
+padding:40px;
+border-radius:30px;
+text-align:center;
+box-shadow:0 20px 40px rgba(0,0,0,.15);
+margin-bottom:30px;
+}
+
+.avatar{
+width:120px;
+height:120px;
+border-radius:50%;
+background:white;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:60px;
+margin:auto;
+margin-bottom:20px;
+}
+
+.profile-card h1{
+font-size:34px;
+margin-bottom:10px;
+}
+
+.profile-card p{
+opacity:.9;
+}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+}
+
+.stat{
+background:white;
+padding:25px;
+border-radius:20px;
+text-align:center;
+box-shadow:0 10px 30px rgba(0,0,0,.08);
+transition:.3s;
+}
+
+.stat:hover{
+transform:translateY(-8px);
+}
+
+.stat h2{
+font-size:34px;
+color:#6D28D9;
+margin-bottom:10px;
+}
+
+.stat p{
+color:#64748b;
+font-weight:bold;
+}
+
+.bottom-nav{
+position:fixed;
+bottom:20px;
+left:50%;
+transform:translateX(-50%);
+width:92%;
+max-width:540px;
+display:flex;
+justify-content:space-around;
+padding:12px;
+background:white;
+border-radius:24px;
+box-shadow:0 15px 35px rgba(0,0,0,.15);
+}
+
+.nav-item{
+display:flex;
+flex-direction:column;
+align-items:center;
+text-decoration:none;
+font-size:24px;
+color:#64748b;
+}
+
+.nav-item span{
+font-size:12px;
+margin-top:5px;
+}
+
+.nav-item.active{
+color:#6D28D9;
+font-weight:bold;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="profile-card">
+
+<div class="avatar">
+👤
+</div>
+
+<h1>Nathanael</h1>
+
+<p>Learning one post-it at a time.</p>
+
+</div>
+
+<div class="stats">
+
+<div class="stat">
+<h2>0</h2>
+<p>Study Streak 🔥</p>
+</div>
+
+<div class="stat">
+<h2>2</h2>
+<p>Courses 📚</p>
+</div>
+
+<div class="stat">
+<h2>0</h2>
+<p>Favorites ❤️</p>
+</div>
+
+<div class="stat">
+<h2>0</h2>
+<p>Cards Completed ✅</p>
+</div>
+
+</div>
+
+</div>
+
+<nav class="bottom-nav">
+
+<a href="study-field.html" class="nav-item">
+🏠
+<span>Home</span>
+</a>
+
+<a href="dashboard.html" class="nav-item">
+📚
+<span>Courses</span>
+</a>
+
+<a href="favorites.html" class="nav-item">
+❤️
+<span>Favorites</span>
+</a>
+
+<a href="profile.html" class="nav-item active">
+👤
+<span>Profile</span>
+</a>
+
+</nav>
+
+</body>
+</html>
