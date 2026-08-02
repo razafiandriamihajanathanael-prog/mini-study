@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mini Study • Settings</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#eef2ff,#f8fafc,#ffffff);
+padding:30px;
+color:#1e293b;
+}
+
+.container{
+max-width:700px;
+margin:auto;
+}
+
+h1{
+font-size:34px;
+margin-bottom:10px;
+}
+
+.subtitle{
+color:#64748b;
+margin-bottom:35px;
+}
+
+.card{
+background:white;
+border-radius:22px;
+padding:25px;
+margin-bottom:20px;
+box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+.card h2{
+font-size:20px;
+margin-bottom:18px;
+color:#6d28d9;
+}
+
+.setting{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:16px 0;
+border-bottom:1px solid #ececec;
+}
+
+.setting:last-child{
+border-bottom:none;
+}
+
+.setting-info h3{
+font-size:16px;
+margin-bottom:4px;
+}
+
+.setting-info p{
+font-size:13px;
+color:#64748b;
+}
+
+.switch{
+position:relative;
+display:inline-block;
+width:54px;
+height:30px;
+}
+
+.switch input{
+display:none;
+}
+
+.slider{
+position:absolute;
+cursor:pointer;
+top:0;
+left:0;
+right:0;
+bottom:0;
+background:#cbd5e1;
+transition:.3s;
+border-radius:30px;
+}
+
+.slider:before{
+content:"";
+position:absolute;
+height:22px;
+width:22px;
+left:4px;
+bottom:4px;
+background:white;
+transition:.3s;
+border-radius:50%;
+}
+
+input:checked + .slider{
+background:#6d28d9;
+}
+
+input:checked + .slider:before{
+transform:translateX(24px);
+}
+
+.back-btn{
+display:inline-block;
+margin-top:15px;
+padding:14px 20px;
+border-radius:14px;
+background:linear-gradient(135deg,#6d28d9,#2563eb);
+color:white;
+text-decoration:none;
+font-weight:bold;
+transition:.3s;
+}
+
+.back-btn:hover{
+transform:translateY(-2px);
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>⚙️ Settings</h1>
+<p class="subtitle">Customize your Mini Study experience.</p>
+
+<div class="card">
+
+<h2>Preferences</h2>
+
+<div class="setting">
+
+<div class="setting-info">
+<h3>Dark Mode</h3>
+<p>Switch between light and dark appearance.</p>
+</div>
+
+<label class="switch">
+<input type="checkbox">
+<span class="slider"></span>
+</label>
+
+</div>
+
+<div class="setting">
+
+<div class="setting-info">
+<h3>Notifications</h3>
+<p>Receive reminders to study every day.</p>
+</div>
+
+<label class="switch">
+<input type="checkbox" checked>
+<span class="slider"></span>
+</label>
+
+</div>
+
+<div class="setting">
+
+<div class="setting-info">
+<h3>Sound Effects</h3>
+<p>Play sounds when completing quizzes.</p>
+</div>
+
+<label class="switch">
+<input type="checkbox">
+<span class="slider"></span>
+</label>
+
+</div>
+
+<div class="setting">
+
+<div class="setting-info">
+<h3>Auto Save</h3>
+<p>Automatically save your progress.</p>
+</div>
+
+<label class="switch">
+<input type="checkbox" checked>
+<span class="slider"></span>
+</label>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Account</h2>
+
+<div class="setting">
+
+<div class="setting-info">
+<h3>Version</h3>
+<p>Mini Study v1.0</p>
+</div>
+
+</div>
+
+<div class="setting">
+
+<div class="setting-info">
+<h3>Storage Used</h3>
+<p>2 MB</p>
+</div>
+
+</div>
+
+</div>
+
+<a href="dashboard.html" class="back-btn">
+← Back to Dashboard
+</a>
+
+</div>
+
+</body>
+</html>
