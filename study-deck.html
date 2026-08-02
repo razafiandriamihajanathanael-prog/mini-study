@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mini Study - Study Deck</title>
+
+<style>
+:root{
+  --purple:#6d28d9;
+  --dark-purple:#4c1d95;
+  --blue:#2563eb;
+  --navy:#0f172a;
+  --text:#334155;
+  --muted:#64748b;
+  --white:#ffffff;
+  --green:#16a34a;
+  --red:#dc2626;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+  min-height:100vh;
+  padding:28px;
+  color:var(--navy);
+  background:
+    radial-gradient(circle at 10% 10%, rgba(196,181,253,.5), transparent 28%),
+    radial-gradient(circle at 90% 85%, rgba(147,197,253,.45), transparent 30%),
+    linear-gradient(145deg,#f8fafc,#eef2ff,#eff6ff);
+}
+
+.study-container{
+  width:100%;
+  max-width:1100px;
+  margin:auto;
+  padding-bottom:100px;
+}
+
+/* HEADER */
+
+.study-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  margin-bottom:25px;
+}
+
+.study-header h1{
+  font-size:34px;
+  margin-bottom:6px;
+}
+
+.study-header p{
+  color:var(--muted);
+}
+
+.back-button{
+  padding:13px 18px;
+  border-radius:14px;
+  color:white;
+  text-decoration:none;
+  font-weight:bold;
+  background:linear-gradient(135deg,var(--purple),var(--blue));
+  transition:.25s;
+}
+
+.back-button:hover{
+  transform:translateY(-2px);
+}
+
+/* LEVEL CARD */
+
+.level-card{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:25px;
+  margin-bottom:22px;
+  padding:22px;
+  border-radius:24px;
+  color:white;
+  background:linear-gradient(135deg,var(--dark-purple),var(--purple),var(--blue));
+  box-shadow:0 18px 45px rgba(76,29,149,.22);
+}
+
+.level-info{
+  min-width:160px;
+}
+
+.level-info h2{
+  font-size:22px;
+  margin-bottom:4px;
+}
+
+.level-info p{
+  opacity:.85;
+}
+
+.xp-area{
+  flex:1;
+}
+
+.xp-label{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:8px;
+  font-size:14px;
+  font-weight:bold;
+}
+
+.xp-track{
+  height:11px;
+  overflow:hidden;
+  border-radius:999px;
+  background:rgba(255,255,255,.25);
+}
+
+.xp-fill{
+  width:0%;
+  height:100%;
+  border-radius:999px;
+  background:white;
+  transition:width .5s ease;
+}
+
+/* TOOLBAR */
+
+.study-toolbar{
+  display:grid;
+  grid-template-columns:2fr 1fr;
+  gap:14px;
+  margin-bottom:18px;
+}
+
+.search-box{
+  width:100%;
+  padding:15px 18px;
+  border:1px solid #dbe3ee;
+  border-radius:16px;
+  outline:none;
+  font-size:15px;
+  background:white;
+  box-shadow:0 8px 22px rgba(15,23,42,.06);
+}
+
+.search-box:focus{
+  border-color:var(--purple);
+  box-shadow:0 0 0 4px rgba(109,40,217,.1);
+}
+
+.category-select{
+  width:100%;
+  padding:15px;
+  border:1px solid #dbe3ee;
+  border-radius:16px;
+  outline:none;
+  background:white;
+  font-size:15px;
+}
+
+/* MODE BUTTONS */
+
+.mode-buttons{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-bottom:22px;
+}
+
+.mode-button{
+  border:none;
+  padding:11px 16px;
+  border-radius:999px;
+  color:var(--text);
+  background:white;
+  font-weight:bold;
+  cursor:pointer;
+  box-shadow:0 7px 18px rgba(15,23,42,.07);
+  transition:.2s;
+}
+
+.mode-button:hover{
+  transform:translateY(-2px);
+  color:var(--purple);
+}
+
+.mode-button.active{
+  color:white;
+  background:linear-gradient(135deg,var(--purple),var(--blue));
+}
+
+/* MAIN GRID */
+
+.study-grid{
+  display:grid;
+  grid-template-columns:2fr 1fr;
+  gap:22px;
+}
+
+/* PROGRESS */
+
+.progress-card{
+  padding:18px;
+  margin-bottom:18px;
+  border-radius:20px;
+  background:white;
+  box-shadow:0 10px 30px rgba(15,23,42,.08);
+}
+
+.progress-top{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:10px;
+  font-weight:bold;
+}
+
+.progress-track{
+  height:10px;
+  overflow:hidden;
+  border-radius:999px;
+  background:#e2e8f0;
+}
+
+.progress-fill{
+  width:0%;
+  height:100%;
+  border-radius:999px;
+  background:linear-gradient(90deg,var(--purple),var(--blue));
+  transition:.4s;
+}
+
+/* FLASHCARD */
+
+.flashcard-wrapper{
+  perspective:1200px;
+  min-height:390px;
+}
+
+.flashcard{
+  position:relative;
+  width:100%;
+  min-height:390px;
+  cursor:pointer;
+  transform-style:preserve-3d;
+  transition:transform .65s cubic-bezier(.2,.7,.2,1);
+}
+
+.flashcard.flipped{
+  transform:rotateY(180deg);
+}
+
+.card-face{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  padding:38px;
+  border-radius:30px;
+  text-align:center;
+  backface-visibility:hidden;
+  box-shadow:0 22px 55px rgba(15,23,42,.15);
+}
+
+.card-front{
+  color:var(--navy);
+  background:
+    radial-gradient(circle at 10% 10%, rgba(255,255,255,.8), transparent 35%),
+    linear-gradient(145deg,#ffffff,#eef2ff);
+}
+
+.card-back{
+  color:white;
+  transform:rotateY(180deg);
+  background:linear-gradient(135deg,var(--dark-purple),var(--purple),var(--blue));
+}
+
+.card-category{
+  position:absolute;
+  top:24px;
+  left:24px;
+  padding:7px 12px;
+  border-radius:999px;
+  color:var(--purple);
+  background:#f3e8ff;
+  font-size:12px;
+  font-weight:bold;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+}
+
+.card-back .card-category{
+  color:white;
+  background:rgba(255,255,255,.18);
+}
+
+.flashcard h2{
+  max-width:650px;
+  font-size:clamp(25px,4vw,38px);
+  line-height:1.3;
+  margin-bottom:18px;
+}
+
+.flashcard p{
+  max-width:620px;
+  font-size:18px;
+  line-height:1.65;
+}
+
+.tap-message{
+  position:absolute;
+  bottom:24px;
+  color:var(--muted);
+  font-size:13px;
+  font-weight:bold;
+}
+
+.card-back .tap-message{
+  color:rgba(255,255,255,.78);
+}
+
+/* ACTIONS */
+
+.card-actions{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:18px;
+}
+
+.action-group{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+.action-button{
+  border:none;
+  padding:13px 17px;
+  border-radius:14px;
+  background:white;
+  color:var(--text);
+  font-weight:bold;
+  cursor:pointer;
+  box-shadow:0 8px 20px rgba(15,23,42,.08);
+  transition:.2s;
+}
+
+.action-button:hover{
+  transform:translateY(-2px);
+  color:var(--purple);
+}
+
+.action-button.primary{
+  color:white;
+  background:linear-gradient(135deg,var(--purple),var(--blue));
+}
+
+.action-button.favorite-active{
+  color:#dc2626;
+  background:#fee2e2;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+
+.sidebar-card{
+  padding:22px;
+  border-radius:22px;
+  background:white;
+  box-shadow:0 12px 32px rgba(15,23,42,.09);
+}
+
+.sidebar-card h3{
+  margin-bottom:16px;
+  font-size:19px;
+  color:var(--purple);
+}
+
+.stat-row{
+  display:flex;
+  justify-content:space-between;
+  padding:11px 0;
+  border-bottom:1px solid #edf0f5;
+}
+
+.stat-row:last-child{
+  border-bottom:none;
+}
+
+.stat-row span{
+  color:var(--muted);
+}
+
+.stat-row strong{
+  color:var(--navy);
+}
+
+/* NOTES */
+
+.notes-box{
+  width:100%;
+  min-height:135px;
+  resize:vertical;
+  padding:14px;
+  border:1px solid #dbe3ee;
+  border-radius:14px;
+  font-size:14px;
+  line-height:1.5;
+  outline:none;
+}
+
+.notes-box:focus{
+  border-color:var(--purple);
+}
+
+.save-note-button{
+  width:100%;
+  margin-top:10px;
+  padding:12px;
+  border:none;
+  border-radius:12px;
+  color:white;
+  background:linear-gradient(135deg,var(--purple),var(--blue));
+  font-weight:bold;
+  cursor:pointer;
+}
+
+/* QUIZ LINK */
+
+.quiz-link{
+  display:block;
+  padding:14px;
+  border-radius:14px;
+  color:white;
+  text-decoration:none;
+  text-align:center;
+  font-weight:bold;
+  background:linear-gradient(135deg,var(--purple),var(--blue));
+}
+
+/* NOTIFICATIONS */
+
+.toast{
+  position:fixed;
+  right:24px;
+  bottom:24px;
+  z-index:2000;
+  padding:15px 20px;
+  color:white;
+  border-radius:15px;
+  background:var(--navy);
+  box-shadow:0 15px 35px rgba(0,0,0,.22);
+  opacity:0;
+  pointer-events:none;
+  transform:translateY(20px);
+  transition:.3s;
+}
+
+.toast.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.level-up{
+  position:fixed;
+  inset:0;
+  z-index:3000;
+  display:none;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+  background:rgba(15,23,42,.65);
+  backdrop-filter:blur(8px);
+}
+
+.level-up.show{
+  display:flex;
+}
+
+.level-up-card{
+  width:100%;
+  max-width:430px;
+  padding:40px;
+  border-radius:30px;
+  text-align:center;
+  background:white;
+  box-shadow:0 30px 70px rgba(0,0,0,.25);
+  animation:popIn .4s ease;
+}
+
+.level-up-card .emoji{
+  font-size:70px;
+  margin-bottom:15px;
+}
+
+.level-up-card h2{
+  font-size:34px;
+  margin-bottom:10px;
+  color:var(--purple);
+}
+
+.level-up-card p{
+  color:var(--muted);
+  line-height:1.6;
+  margin-bottom:22px;
+}
+
+.level-up-card button{
+  border:none;
+  padding:14px 24px;
+  border-radius:14px;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+  background:linear-gradient(135deg,var(--purple),var(--blue));
+}
+
+@keyframes popIn{
+  from{
+    opacity:0;
+    transform:scale(.8);
+  }
+
+  to{
+    opacity:1;
+    transform:scale(1);
+  }
+}
+
+/* EMPTY STATE */
+
+.empty-state{
+  display:none;
+  min-height:390px;
+  justify-content:center;
+  align-items:center;
+  padding:30px;
+  border-radius:30px;
+  text-align:center;
+  background:white;
+  box-shadow:0 18px 45px rgba(15,23,42,.1);
+}
+
+.empty-state h2{
+  margin-bottom:10px;
+}
+
+.empty-state p{
+  color:var(--muted);
+}
+
+/* MOBILE */
+
+@media(max-width:850px){
+  .study-grid{
+    grid-template-columns:1fr;
+  }
+
+  .study-toolbar{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:600px){
+  body{
+    padding:17px;
+  }
+
+  .study-header{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .back-button{
+    width:100%;
+    text-align:center;
+  }
+
+  .level-card{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .xp-area{
+    width:100%;
+  }
+
+  .flashcard-wrapper,
+  .flashcard{
+    min-height:430px;
+  }
+
+  .card-face{
+    padding:30px 22px;
+  }
+
+  .card-actions{
+    flex-direction:column;
+    align-items:stretch;
+  }
+
+  .action-group{
+    width:100%;
+  }
+
+  .action-button{
+    flex:1;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<main class="study-container">
+
+  <header class="study-header">
+    <div>
+      <h1>📚 Study Deck</h1>
+      <p>Study, review, take notes, and test your knowledge.</p>
+    </div>
+
+    <a href="dashboard.html" class="back-button">
+      ← Dashboard
+    </a>
+  </header>
+
+  <section class="level-card">
+    <div class="level-info">
+      <h2 id="levelText">Level 1</h2>
+      <p id="xpText">0 / 100 XP</p>
+    </div>
+
+    <div class="xp-area">
+      <div class="xp-label">
+        <span>Study progress</span>
+        <span id="xpPercent">0%</span>
+      </div>
+
+      <div class="xp-track">
+        <div class="xp-fill" id="xpFill"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="study-toolbar">
+    <input
+      type="search"
+      class="search-box"
+      id="searchInput"
+      placeholder="🔍 Search a concept..."
+    >
+
+    <select class="category-select" id="categorySelect">
+      <option value="All">All Categories</option>
+    </select>
+  </section>
+
+  <section class="mode-buttons">
+    <button class="mode-button active" data-mode="all">📖 Flashcards</button>
+    <button class="mode-button" data-mode="favorites">❤️ Favorites</button>
+    <button class="mode-button" data-mode="random">🔀 Random</button>
+    <button class="mode-button" id="shuffleButton">🎲 Shuffle Deck</button>
+  </section>
+
+  <div class="study-grid">
+
+    <section class="main-study-area">
+
+      <div class="progress-card">
+        <div class="progress-top">
+          <span id="cardPosition">Card 1 of 1</span>
+          <span id="progressPercent">0%</span>
+        </div>
+
+        <div class="progress-track">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+      </div>
+
+      <div class="flashcard-wrapper" id="flashcardWrapper">
+
+        <article class="flashcard" id="flashcard">
+
+          <div class="card-face card-front">
+            <span class="card-category" id="frontCategory"></span>
+            <h2 id="questionText"></h2>
+            <span class="tap-message">Tap the card to reveal the answer</span>
+          </div>
+
+          <div class="card-face card-back">
+            <span class="card-category" id="backCategory"></span>
+            <h2 id="answerTitle"></h2>
+            <p id="answerText"></p>
+            <span class="tap-message">Tap again to see the question</span>
+          </div>
+
+        </article>
+
+      </div>
+
+      <div class="empty-state" id="emptyState">
+        <div>
+          <h2>No cards found</h2>
+          <p>Try changing the search, category, or study mode.</p>
+        </div>
+      </div>
+
+      <div class="card-actions">
+
+        <div class="action-group">
+          <button class="action-button" id="previousButton">
+            ← Previous
+          </button>
+
+          <button class="action-button primary" id="nextButton">
+            Next →
+          </button>
+        </div>
+
+        <div class="action-group">
+          <button class="action-button" id="favoriteButton">
+            ♡ Favorite
+          </button>
+
+          <button class="action-button" id="speakButton">
+            🔊 Read
+          </button>
+        </div>
+
+      </div>
+
+    </section>
+
+    <aside class="sidebar">
+
+      <section class="sidebar-card">
+        <h3>📊 Today’s Session</h3>
+
+        <div class="stat-row">
+          <span>Cards viewed</span>
+          <strong id="viewedStat">0</strong>
+        </div>
+
+        <div class="stat-row">
+          <span>Favorites</span>
+          <strong id="favoriteStat">0</strong>
+        </div>
+
+        <div class="stat-row">
+          <span>XP earned</span>
+          <strong id="xpEarnedStat">0</strong>
+        </div>
+
+        <div class="stat-row">
+          <span>Study time</span>
+          <strong id="timeStat">0 min</strong>
+        </div>
+      </section>
+
+      <section class="sidebar-card">
+        <h3>📝 Personal Notes</h3>
+
+        <textarea
+          class="notes-box"
+          id="notesBox"
+          placeholder="Write a note about this card..."
+        ></textarea>
+
+        <button class="save-note-button" id="saveNoteButton">
+          Save Note
+        </button>
+      </section>
+
+      <section class="sidebar-card">
+        <h3>🎯 Practice</h3>
+
+        <a href="quiz.html" class="quiz-link">
+          Start Practice Quiz
+        </a>
+      </section>
+
+    </aside>
+
+  </div>
+
+</main>
+
+<div class="toast" id="toast"></div>
+
+<div class="level-up" id="levelUpModal">
+  <div class="level-up-card">
+    <div class="emoji">✨</div>
+    <h2>Level Up!</h2>
+    <p id="levelUpMessage">You reached a new Mini Study level.</p>
+
+    <button id="closeLevelUp">
+      Continue Studying
+    </button>
+  </div>
+</div>
+
+<script>
+const originalCards = [
+  {
+    id:1,
+    category:"Strategy",
+    question:"What does SWOT stand for?",
+    answerTitle:"SWOT Analysis",
+    answer:"Strengths, Weaknesses, Opportunities, and Threats."
+  },
+  {
+    id:2,
+    category:"Strategy",
+    question:"What does the VRIO framework evaluate?",
+    answerTitle:"VRIO Framework",
+    answer:"Value, Rarity, Imitability, and Organization."
+  },
+  {
+    id:3,
+    category:"Competitive Analysis",
+    question:"What are Porter’s Five Forces?",
+    answerTitle:"Porter’s Five Forces",
+    answer:"Industry rivalry, threat of new entrants, supplier power, buyer power, and threat of substitutes."
+  },
+  {
+    id:4,
+    category:"Management",
+    question:"What is competitive advantage?",
+    answerTitle:"Competitive Advantage",
+    answer:"A condition that allows a company to create more value or perform better than its competitors."
+  },
+  {
+    id:5,
+    category:"Global Business",
+    question:"What is globalization?",
+    answerTitle:"Globalization",
+    answer:"The increasing connection and interdependence of businesses, markets, economies, and countries."
+  },
+  {
+    id:6,
+    category:"Finance",
+    question:"What does liquidity describe?",
+    answerTitle:"Liquidity",
+    answer:"A company’s ability to meet its short-term financial obligations."
+  },
+  {
+    id:7,
+    category:"Marketing",
+    question:"What are the four Ps of marketing?",
+    answerTitle:"Marketing Mix",
+    answer:"Product, Price, Place, and Promotion."
+  },
+  {
+    id:8,
+    category:"Economics",
+    question:"What is opportunity cost?",
+    answerTitle:"Opportunity Cost",
+    answer:"The value of the next-best alternative that is given up when making a decision."
+  },
+  {
+    id:9,
+    category:"Accounting",
+    question:"What is the basic accounting equation?",
+    answerTitle:"Accounting Equation",
+    answer:"Assets equal liabilities plus owners’ equity."
+  },
+  {
+    id:10,
+    category:"Leadership",
+    question:"What is servant leadership?",
+    answerTitle:"Servant Leadership",
+    answer:"A leadership approach that prioritizes serving, supporting, and developing other people."
+  }
+];
+
+let cards = [...originalCards];
+let filteredCards = [...cards];
+let currentIndex = 0;
+let currentMode = "all";
+let sessionViewed = 0;
+let sessionXp = 0;
+let sessionSeconds = 0;
+
+const flashcard = document.getElementById("flashcard");
+const flashcardWrapper = document.getElementById("flashcardWrapper");
+const emptyState = document.getElementById("emptyState");
+
+const frontCategory = document.getElementById("frontCategory");
+const backCategory = document.getElementById("backCategory");
+const questionText = document.getElementById("questionText");
+const answerTitle = document.getElementById("answerTitle");
+const answerText = document.getElementById("answerText");
+
+const cardPosition = document.getElementById("cardPosition");
+const progressPercent = document.getElementById("progressPercent");
+const progressFill = document.getElementById("progressFill");
+
+const previousButton = document.getElementById("previousButton");
+const nextButton = document.getElementById("nextButton");
+const favoriteButton = document.getElementById("favoriteButton");
+const speakButton = document.getElementById("speakButton");
+const shuffleButton = document.getElementById("shuffleButton");
+
+const searchInput = document.getElementById("searchInput");
+const categorySelect = document.getElementById("categorySelect");
+const modeButtons = document.querySelectorAll(".mode-button[data-mode]");
+
+const viewedStat = document.getElementById("viewedStat");
+const favoriteStat = document.getElementById("favoriteStat");
+const xpEarnedStat = document.getElementById("xpEarnedStat");
+const timeStat = document.getElementById("timeStat");
+
+const notesBox = document.getElementById("notesBox");
+const saveNoteButton = document.getElementById("saveNoteButton");
+
+const levelText = document.getElementById("levelText");
+const xpText = document.getElementById("xpText");
+const xpPercent = document.getElementById("xpPercent");
+const xpFill = document.getElementById("xpFill");
+
+const toast = document.getElementById("toast");
+const levelUpModal = document.getElementById("levelUpModal");
+const levelUpMessage = document.getElementById("levelUpMessage");
+const closeLevelUp = document.getElementById("closeLevelUp");
+
+function showToast(message){
+  toast.textContent = message;
+  toast.classList.add("show");
+
+  setTimeout(function(){
+    toast.classList.remove("show");
+  },2200);
+}
+
+function getFavorites(){
+  return JSON.parse(localStorage.getItem("miniStudyDeckFavorites")) || [];
+}
+
+function saveFavorites(favorites){
+  localStorage.setItem(
+    "miniStudyDeckFavorites",
+    JSON.stringify(favorites)
+  );
+}
+
+function isFavorite(cardId){
+  return getFavorites().includes(cardId);
+}
+
+function populateCategories(){
+  const categories = [...new Set(originalCards.map(card => card.category))];
+
+  categories.forEach(function(category){
+    const option = document.createElement("option");
+    option.value = category;
+    option.textContent = category;
+    categorySelect.appendChild(option);
+  });
+}
+
+function applyFilters(){
+  const searchTerm = searchInput.value.toLowerCase().trim();
+  const selectedCategory = categorySelect.value;
+  const favorites = getFavorites();
+
+  filteredCards = cards.filter(function(card){
+    const matchesSearch =
+      card.question.toLowerCase().includes(searchTerm) ||
+      card.answer.toLowerCase().includes(searchTerm) ||
+      card.answerTitle.toLowerCase().includes(searchTerm) ||
+      card.category.toLowerCase().includes(searchTerm);
+
+    const matchesCategory =
+      selectedCategory === "All" ||
+      card.category === selectedCategory;
+
+    const matchesMode =
+      currentMode !== "favorites" ||
+      favorites.includes(card.id);
+
+    return matchesSearch && matchesCategory && matchesMode;
+  });
+
+  if(currentMode === "random" && filteredCards.length > 1){
+    filteredCards = shuffleArray(filteredCards);
+  }
+
+  currentIndex = 0;
+  displayCard();
+}
+
+function displayCard(){
+  flashcard.classList.remove("flipped");
+
+  if(filteredCards.length === 0){
+    flashcardWrapper.style.display = "none";
+    emptyState.style.display = "flex";
+
+    cardPosition.textContent = "No cards";
+    progressPercent.textContent = "0%";
+    progressFill.style.width = "0%";
+
+    favoriteButton.disabled = true;
+    speakButton.disabled = true;
+    previousButton.disabled = true;
+    nextButton.disabled = true;
+
+    notesBox.value = "";
+    updateStats();
+    return;
+  }
+
+  flashcardWrapper.style.display = "block";
+  emptyState.style.display = "none";
+
+  favoriteButton.disabled = false;
+  speakButton.disabled = false;
+  previousButton.disabled = false;
+  nextButton.disabled = false;
+
+  const card = filteredCards[currentIndex];
+
+  frontCategory.textContent = card.category;
+  backCategory.textContent = card.category;
+  questionText.textContent = card.question;
+  answerTitle.textContent = card.answerTitle;
+  answerText.textContent = card.answer;
+
+  cardPosition.textContent =
+    "Card " + (currentIndex + 1) + " of " + filteredCards.length;
+
+  const percentage =
+    ((currentIndex + 1) / filteredCards.length) * 100;
+
+  progressPercent.textContent = Math.round(percentage) + "%";
+  progressFill.style.width = percentage + "%";
+
+  favoriteButton.classList.toggle(
+    "favorite-active",
+    isFavorite(card.id)
+  );
+
+  favoriteButton.textContent =
+    isFavorite(card.id) ? "♥ Favorited" : "♡ Favorite";
+
+  loadCardNote(card.id);
+  trackCardView();
+  updateStats();
+}
+
+function trackCardView(){
+  sessionViewed++;
+  addXp(5);
+}
+
+function addXp(amount){
+  const previousLevel = getLevel();
+
+  let totalXp =
+    Number(localStorage.getItem("miniStudyTotalXp")) || 0;
+
+  totalXp += amount;
+  sessionXp += amount;
+
+  localStorage.setItem("miniStudyTotalXp", totalXp);
+
+  const newLevel = getLevel();
+
+  updateLevelDisplay();
+
+  if(newLevel > previousLevel){
+    levelUpMessage.textContent =
+      "You reached Level " + newLevel + " and unlocked a new achievement!";
+
+    levelUpModal.classList.add("show");
+  }
+}
+
+function getLevel(){
+  const totalXp =
+    Number(localStorage.getItem("miniStudyTotalXp")) || 0;
+
+  return Math.floor(totalXp / 100) + 1;
+}
+
+function updateLevelDisplay(){
+  const totalXp =
+    Number(localStorage.getItem("miniStudyTotalXp")) || 0;
+
+  const level = getLevel();
+  const xpInsideLevel = totalXp % 100;
+
+  levelText.textContent = "Level " + level;
+  xpText.textContent = xpInsideLevel + " / 100 XP";
+  xpPercent.textContent = xpInsideLevel + "%";
+  xpFill.style.width = xpInsideLevel + "%";
+}
+
+function updateStats(){
+  viewedStat.textContent = sessionViewed;
+  favoriteStat.textContent = getFavorites().length;
+  xpEarnedStat.textContent = sessionXp;
+  timeStat.textContent = Math.floor(sessionSeconds / 60) + " min";
+}
+
+function toggleFavorite(){
+  if(filteredCards.length === 0){
+    return;
+  }
+
+  const card = filteredCards[currentIndex];
+  let favorites = getFavorites();
+
+  if(favorites.includes(card.id)){
+    favorites = favorites.filter(id => id !== card.id);
+    showToast("Removed from favorites.");
+  }else{
+    favorites.push(card.id);
+    addXp(10);
+    showToast("Added to favorites! +10 XP");
+  }
+
+  saveFavorites(favorites);
+
+  if(currentMode === "favorites"){
+    applyFilters();
+  }else{
+    displayCard();
+  }
+}
+
+function shuffleArray(array){
+  const copy = [...array];
+
+  for(let i = copy.length - 1; i > 0; i--){
+    const randomIndex = Math.floor(Math.random() * (i + 1));
+
+    [copy[i], copy[randomIndex]] =
+      [copy[randomIndex], copy[i]];
+  }
+
+  return copy;
+}
+
+function shuffleDeck(){
+  cards = shuffleArray(cards);
+  applyFilters();
+  showToast("Deck shuffled!");
+}
+
+function saveCardNote(){
+  if(filteredCards.length === 0){
+    return;
+  }
+
+  const card = filteredCards[currentIndex];
+  const notes =
+    JSON.parse(localStorage.getItem("miniStudyCardNotes")) || {};
+
+  notes[card.id] = notesBox.value.trim();
+
+  localStorage.setItem(
+    "miniStudyCardNotes",
+    JSON.stringify(notes)
+  );
+
+  showToast("Note saved!");
+}
+
+function loadCardNote(cardId){
+  const notes =
+    JSON.parse(localStorage.getItem("miniStudyCardNotes")) || {};
+
+  notesBox.value = notes[cardId] || "";
+}
+
+function speakCard(){
+  if(filteredCards.length === 0){
+    return;
+  }
+
+  if(!("speechSynthesis" in window)){
+    showToast("Text-to-speech is not supported.");
+    return;
+  }
+
+  window.speechSynthesis.cancel();
+
+  const card = filteredCards[currentIndex];
+
+  const text = flashcard.classList.contains("flipped")
+    ? card.answerTitle + ". " + card.answer
+    : card.question;
+
+  const speech = new SpeechSynthesisUtterance(text);
+  speech.rate = 0.95;
+
+  window.speechSynthesis.speak(speech);
+}
+
+flashcard.addEventListener("click", function(){
+  flashcard.classList.toggle("flipped");
+});
+
+previousButton.addEventListener("click", function(){
+  if(filteredCards.length === 0){
+    return;
+  }
+
+  currentIndex--;
+
+  if(currentIndex < 0){
+    currentIndex = filteredCards.length - 1;
+  }
+
+  displayCard();
+});
+
+nextButton.addEventListener("click", function(){
+  if(filteredCards.length === 0){
+    return;
+  }
+
+  currentIndex++;
+
+  if(currentIndex >= filteredCards.length){
+    currentIndex = 0;
+  }
+
+  displayCard();
+});
+
+favoriteButton.addEventListener("click", toggleFavorite);
+speakButton.addEventListener("click", speakCard);
+shuffleButton.addEventListener("click", shuffleDeck);
+saveNoteButton.addEventListener("click", saveCardNote);
+
+searchInput.addEventListener("input", applyFilters);
+categorySelect.addEventListener("change", applyFilters);
+
+modeButtons.forEach(function(button){
+  button.addEventListener("click", function(){
+    modeButtons.forEach(item => item.classList.remove("active"));
+
+    button.classList.add("active");
+    currentMode = button.dataset.mode;
+
+    applyFilters();
+  });
+});
+
+closeLevelUp.addEventListener("click", function(){
+  levelUpModal.classList.remove("show");
+});
+
+document.addEventListener("keydown", function(event){
+  if(event.key === "ArrowRight"){
+    nextButton.click();
+  }
+
+  if(event.key === "ArrowLeft"){
+    previousButton.click();
+  }
+
+  if(event.key === " " && document.activeElement.tagName !== "TEXTAREA"){
+    event.preventDefault();
+    flashcard.click();
+  }
+});
+
+setInterval(function(){
+  sessionSeconds++;
+  updateStats();
+},1000);
+
+populateCategories();
+updateLevelDisplay();
+applyFilters();
+</script>
+
+</body>
+</html>
