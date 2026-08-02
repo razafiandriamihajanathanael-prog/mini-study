@@ -7,7 +7,60 @@
 <title>Mini Study - Onboarding</title>
 
 <style>
+.floating-emojis{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+    z-index:0;
+}
 
+.floating-emojis span{
+    position:absolute;
+    font-size:32px;
+    opacity:.18;
+    animation:floatUp linear infinite;
+}
+
+@keyframes floatUp{
+
+    from{
+        transform:translateY(110vh) rotate(0deg);
+    }
+
+    to{
+        transform:translateY(-120vh) rotate(360deg);
+    }
+
+}
+.floating-emojis span:nth-child(1){left:3%;animation-duration:18s;}
+.floating-emojis span:nth-child(2){left:8%;animation-duration:24s;}
+.floating-emojis span:nth-child(3){left:14%;animation-duration:20s;}
+.floating-emojis span:nth-child(4){left:20%;animation-duration:17s;}
+.floating-emojis span:nth-child(5){left:26%;animation-duration:23s;}
+.floating-emojis span:nth-child(6){left:32%;animation-duration:19s;}
+.floating-emojis span:nth-child(7){left:38%;animation-duration:25s;}
+.floating-emojis span:nth-child(8){left:44%;animation-duration:18s;}
+.floating-emojis span:nth-child(9){left:50%;animation-duration:22s;}
+.floating-emojis span:nth-child(10){left:56%;animation-duration:16s;}
+.floating-emojis span:nth-child(11){left:62%;animation-duration:24s;}
+.floating-emojis span:nth-child(12){left:68%;animation-duration:21s;}
+.floating-emojis span:nth-child(13){left:74%;animation-duration:19s;}
+.floating-emojis span:nth-child(14){left:80%;animation-duration:23s;}
+.floating-emojis span:nth-child(15){left:86%;animation-duration:18s;}
+.floating-emojis span:nth-child(16){left:92%;animation-duration:20s;}
+.floating-emojis span:nth-child(17){left:6%;animation-delay:4s;animation-duration:22s;}
+.floating-emojis span:nth-child(18){left:18%;animation-delay:2s;animation-duration:18s;}
+.floating-emojis span:nth-child(19){left:35%;animation-delay:5s;animation-duration:24s;}
+.floating-emojis span:nth-child(20){left:53%;animation-delay:3s;animation-duration:19s;}
+.floating-emojis span:nth-child(21){left:71%;animation-delay:1s;animation-duration:21s;}
+.floating-emojis span:nth-child(22){left:89%;animation-delay:6s;animation-duration:18s;}
+.floating-emojis span:nth-child(23){left:12%;animation-delay:7s;animation-duration:23s;}
+.floating-emojis span:nth-child(24){left:47%;animation-delay:2s;animation-duration:20s;}
+.floating-emojis span:nth-child(25){left:77%;animation-delay:5s;animation-duration:25s;}
+.floating-emojis span:nth-child(26){left:28%;animation-delay:4s;animation-duration:19s;}
+.floating-emojis span:nth-child(27){left:59%;animation-delay:1s;animation-duration:22s;}
+.floating-emojis span:nth-child(28){left:95%;animation-delay:3s;animation-duration:18s;}
 *{
 margin:0;
 padding:0;
@@ -68,46 +121,7 @@ color:white;
 background:#5B21B6;
 
 }
-/* Floating background */
 
-.floating-icons{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-overflow:hidden;
-pointer-events:none;
-z-index:0;
-}
-
-.icon{
-position:absolute;
-font-size:50px;
-opacity:.15;
-animation:float 12s ease-in-out infinite;
-}
-
-.icon1{top:8%;left:10%;}
-.icon2{top:70%;left:15%;animation-delay:2s;}
-.icon3{top:18%;right:12%;animation-delay:4s;}
-.icon4{top:75%;right:18%;animation-delay:6s;}
-.icon5{top:15%;left:45%;animation-delay:8s;}
-.icon6{top:50%;left:30%;animation-delay:10s;}
-.icon7{top:35%;right:35%;animation-delay:3s;}
-.icon8{top:82%;left:55%;animation-delay:5s;}
-
-@keyframes float{
-
-0%,100%{
-transform:translateY(0px) rotate(0deg);
-}
-
-50%{
-transform:translateY(-30px) rotate(12deg);
-}
-
-}
 
 .card{
 position:relative;
