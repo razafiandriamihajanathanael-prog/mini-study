@@ -68,13 +68,66 @@ color:white;
 background:#5B21B6;
 
 }
+/* Floating background */
 
+.floating-icons{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+overflow:hidden;
+pointer-events:none;
+z-index:0;
+}
+
+.icon{
+position:absolute;
+font-size:50px;
+opacity:.15;
+animation:float 12s ease-in-out infinite;
+}
+
+.icon1{top:8%;left:10%;}
+.icon2{top:70%;left:15%;animation-delay:2s;}
+.icon3{top:18%;right:12%;animation-delay:4s;}
+.icon4{top:75%;right:18%;animation-delay:6s;}
+.icon5{top:15%;left:45%;animation-delay:8s;}
+.icon6{top:50%;left:30%;animation-delay:10s;}
+.icon7{top:35%;right:35%;animation-delay:3s;}
+.icon8{top:82%;left:55%;animation-delay:5s;}
+
+@keyframes float{
+
+0%,100%{
+transform:translateY(0px) rotate(0deg);
+}
+
+50%{
+transform:translateY(-30px) rotate(12deg);
+}
+
+}
+
+.card{
+position:relative;
+z-index:2;
+}
 </style>
 
 </head>
 
 <body>
-
+<div class="floating-icons">
+    <span class="icon icon1">🧠</span>
+    <span class="icon icon2">📚</span>
+    <span class="icon icon3">🎓</span>
+    <span class="icon icon4">📝</span>
+    <span class="icon icon5">🏆</span>
+    <span class="icon icon6">⭐</span>
+    <span class="icon icon7">💡</span>
+    <span class="icon icon8">📖</span>
+</div>
 <div class="card">
 
 <h1>Welcome 👋</h1>
