@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>From Data to Decisions</title>
+
+<style>
+:root{
+  --bg:#07111f;
+  --panel:#0f1f33;
+  --cyan:#22d3ee;
+  --lime:#a3e635;
+  --purple:#a78bfa;
+  --pink:#f472b6;
+  --orange:#fb923c;
+  --white:#f8fafc;
+  --muted:#94a3b8;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Courier New", monospace;
+}
+
+body{
+  min-height:100vh;
+  padding:24px;
+  color:var(--white);
+  background:
+    linear-gradient(rgba(34,211,238,.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34,211,238,.06) 1px, transparent 1px),
+    radial-gradient(circle at top left, rgba(167,139,250,.20), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(34,211,238,.18), transparent 30%),
+    var(--bg);
+  background-size:32px 32px,32px 32px,auto,auto,auto;
+}
+
+.page{
+  max-width:1200px;
+  margin:auto;
+}
+
+.back{
+  display:inline-block;
+  margin-bottom:22px;
+  padding:10px 16px;
+  color:var(--cyan);
+  text-decoration:none;
+  font-weight:bold;
+  border:2px solid var(--cyan);
+  box-shadow:4px 4px 0 #0e7490;
+  background:#081522;
+}
+
+.header{
+  padding:30px;
+  margin-bottom:28px;
+  border:3px solid var(--purple);
+  background:linear-gradient(135deg,#111827,#172554);
+  box-shadow:8px 8px 0 #4c1d95;
+}
+
+.header h1{
+  font-size:clamp(30px,5vw,48px);
+  margin-bottom:12px;
+}
+
+.header p{
+  color:var(--muted);
+  font-size:17px;
+  line-height:1.6;
+}
+
+.robot{
+  font-size:54px;
+  margin-bottom:14px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.card{
+  min-height:260px;
+  padding:22px;
+  border:3px solid;
+  background:var(--panel);
+  box-shadow:7px 7px 0 rgba(0,0,0,.45);
+  transition:.25s;
+}
+
+.card:hover{
+  transform:translate(-3px,-3px);
+  box-shadow:11px 11px 0 rgba(0,0,0,.45);
+}
+
+.cyan{border-color:var(--cyan);}
+.lime{border-color:var(--lime);}
+.purple{border-color:var(--purple);}
+.pink{border-color:var(--pink);}
+.orange{border-color:var(--orange);}
+
+.card-number{
+  display:inline-block;
+  margin-bottom:12px;
+  padding:5px 9px;
+  color:#020617;
+  font-weight:bold;
+  background:var(--cyan);
+}
+
+.card h2{
+  font-size:21px;
+  margin-bottom:14px;
+  line-height:1.3;
+}
+
+.card p,
+.card li{
+  color:#dbeafe;
+  font-size:15px;
+  line-height:1.55;
+}
+
+.card ul{
+  padding-left:20px;
+}
+
+.tip{
+  margin-top:16px;
+  padding:12px;
+  color:#020617;
+  font-weight:bold;
+  background:var(--lime);
+  border:2px solid #65a30d;
+}
+
+@media(max-width:950px){
+  .grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media(max-width:650px){
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  body{
+    padding:16px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<main class="page">
+
+<a class="back" href="computer-science.html">← Computer Science</a>
+
+<section class="header">
+  <div class="robot">🤖</div>
+  <h1>From Data to Decisions</h1>
+  <p>A Practical Analytics Path — robotic flashcards for learning data analytics step by step.</p>
+</section>
+
+<section class="grid">
+
+<div class="card cyan">
+  <div class="card-number">01</div>
+  <h2>What is Data Analysis?</h2>
+  <p>The collection, transformation, and organization of data to draw conclusions, make predictions, and support informed decisions.</p>
+  <div class="tip">PROCESS: Ask → Prepare → Process → Analyze → Share → Act</div>
+</div>
+
+<div class="card lime">
+  <div class="card-number">02</div>
+  <h2>Data Life Cycle</h2>
+  <ul>
+    <li>Plan</li>
+    <li>Capture</li>
+    <li>Manage</li>
+    <li>Analyze</li>
+    <li>Archive</li>
+    <li>Destroy</li>
+  </ul>
+</div>
+
+<div class="card purple">
+  <div class="card-number">03</div>
+  <h2>SMART Questions</h2>
+  <ul>
+    <li>Specific</li>
+    <li>Measurable</li>
+    <li>Action-oriented</li>
+    <li>Relevant</li>
+    <li>Time-bound</li>
+  </ul>
+</div>
+
+<div class="card pink">
+  <div class="card-number">04</div>
+  <h2>Qualitative vs Quantitative</h2>
+  <p><strong>Qualitative:</strong> descriptive and subjective.</p>
+  <p><strong>Quantitative:</strong> numerical and measurable.</p>
+</div>
+
+<div class="card orange">
+  <div class="card-number">05</div>
+  <h2>ROCCC Data Quality</h2>
+  <ul>
+    <li>Reliable</li>
+    <li>Original</li>
+    <li>Comprehensive</li>
+    <li>Current</li>
+    <li>Cited</li>
+  </ul>
+</div>
+
+<div class="card cyan">
+  <div class="card-number">06</div>
+  <h2>Dirty Data</h2>
+  <p>Data that is incomplete, incorrect, duplicated, outdated, inconsistent, or improperly formatted.</p>
+  <div class="tip">BAD INPUT = BAD DECISION</div>
+</div>
+
+<div class="card lime">
+  <div class="card-number">07</div>
+  <h2>SQL JOINs</h2>
+  <ul>
+    <li>INNER JOIN</li>
+    <li>LEFT JOIN</li>
+    <li>RIGHT JOIN</li>
+    <li>FULL JOIN</li>
+  </ul>
+</div>
+
+<div class="card purple">
+  <div class="card-number">08</div>
+  <h2>Correlation vs Causation</h2>
+  <p>Correlation means two variables are related. Causation means one directly produces a change in the other.</p>
+  <div class="tip">Correlation does not prove causation.</div>
+</div>
+
+<div class="card pink">
+  <div class="card-number">09</div>
+  <h2>Data Visualization</h2>
+  <p>Using charts and graphics to communicate patterns, relationships, trends, and insights clearly.</p>
+</div>
+
+<div class="card orange">
+  <div class="card-number">10</div>
+  <h2>Python for Analytics</h2>
+  <ul>
+    <li>pandas</li>
+    <li>NumPy</li>
+    <li>DataFrames</li>
+    <li>Jupyter Notebook</li>
+  </ul>
+</div>
+
+<div class="card cyan">
+  <div class="card-number">11</div>
+  <h2>Capstone Project</h2>
+  <p>Apply the full analytics process to a real-world case and create a portfolio-ready project.</p>
+</div>
+
+<div class="card lime">
+  <div class="card-number">12</div>
+  <h2>AI Job Search</h2>
+  <p>Use AI to improve resumes, compare job descriptions, prepare interview answers, and practice the STAR method.</p>
+</div>
+
+</section>
+
+</main>
+
+</body>
+</html>
