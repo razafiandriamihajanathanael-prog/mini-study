@@ -256,7 +256,9 @@ body{
     <button class="next-btn" id="nextBtn">
       Continue with Business →
     </button>
-
+<button class="dashboard-btn" id="dashboardBtn">
+  🚀 Go to Dashboard
+</button>
     <p class="helper-text" id="helperText">
       Business is currently selected.
     </p>
@@ -300,6 +302,11 @@ nextButton.addEventListener("click", function(){
       selectedField + " content will be added soon.";
   }
 });
+document
+  .getElementById("dashboardBtn")
+  .addEventListener("click", function(){
+    window.location.href = "dashboard.html";
+  });
 </script>
 
 </body>
