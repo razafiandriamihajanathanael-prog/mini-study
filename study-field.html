@@ -3,41 +3,304 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Study Field</title>
+
+<title>Mini Study - Choose Field</title>
 
 <style>
+:root{
+  --purple:#6d28d9;
+  --dark-purple:#4c1d95;
+  --blue:#2563eb;
+  --navy:#0f172a;
+  --text:#334155;
+  --muted:#64748b;
+  --white:#ffffff;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:30px;
+  color:var(--navy);
+
+  background:
+    radial-gradient(circle at 10% 10%, rgba(196,181,253,.55), transparent 28%),
+    radial-gradient(circle at 90% 85%, rgba(147,197,253,.50), transparent 30%),
+    linear-gradient(145deg,#f8fafc,#eef2ff,#eff6ff);
+}
+
+.field-container{
+  width:100%;
+  max-width:760px;
+}
+
+.field-header{
+  text-align:center;
+  margin-bottom:30px;
+}
+
+.logo{
+  width:76px;
+  height:76px;
+  display:grid;
+  place-items:center;
+  margin:0 auto 18px;
+  border-radius:24px;
+  font-size:38px;
+  color:white;
+  background:linear-gradient(135deg,var(--purple),var(--blue));
+  box-shadow:0 16px 35px rgba(79,70,229,.28);
+}
+
+.field-header h1{
+  font-size:clamp(32px,5vw,46px);
+  margin-bottom:10px;
+}
+
+.field-header p{
+  color:var(--muted);
+  font-size:17px;
+  line-height:1.6;
+}
+
+.field-card{
+  padding:30px;
+  border:1px solid rgba(255,255,255,.8);
+  border-radius:30px;
+  background:rgba(255,255,255,.88);
+  backdrop-filter:blur(16px);
+  box-shadow:0 24px 60px rgba(15,23,42,.13);
+}
+
+.field-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:16px;
+}
+
 .field-btn{
-width:100%;
-padding:16px;
-margin:10px 0;
-font-size:18px;
-border:none;
-border-radius:12px;
-background:#6D28D9;
-color:white;
-cursor:pointer;
+  position:relative;
+  width:100%;
+  min-height:120px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:flex-start;
+  gap:8px;
+  padding:22px;
+  border:2px solid transparent;
+  border-radius:22px;
+  background:white;
+  color:var(--navy);
+  text-align:left;
+  cursor:pointer;
+  box-shadow:0 10px 28px rgba(15,23,42,.08);
+  transition:.25s;
+}
+
+.field-btn:hover{
+  transform:translateY(-5px);
+  border-color:rgba(109,40,217,.25);
+  box-shadow:0 18px 38px rgba(15,23,42,.13);
+}
+
+.field-btn.selected{
+  color:white;
+  border-color:transparent;
+  background:linear-gradient(135deg,var(--dark-purple),var(--purple),var(--blue));
+  box-shadow:0 18px 38px rgba(79,70,229,.25);
+}
+
+.field-icon{
+  font-size:32px;
+}
+
+.field-name{
+  font-size:19px;
+  font-weight:bold;
+}
+
+.field-description{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.4;
+}
+
+.field-btn.selected .field-description{
+  color:rgba(255,255,255,.82);
+}
+
+.next-btn{
+  width:100%;
+  margin-top:22px;
+  padding:16px;
+  border:none;
+  border-radius:16px;
+  color:white;
+  font-size:17px;
+  font-weight:bold;
+  cursor:pointer;
+  background:linear-gradient(135deg,var(--purple),var(--blue));
+  box-shadow:0 12px 28px rgba(79,70,229,.23);
+  transition:.25s;
+}
+
+.next-btn:hover{
+  transform:translateY(-3px);
+}
+
+.helper-text{
+  margin-top:14px;
+  text-align:center;
+  color:var(--muted);
+  font-size:13px;
+}
+
+@media(max-width:650px){
+  body{
+    padding:18px;
+  }
+
+  .field-card{
+    padding:22px;
+  }
+
+  .field-grid{
+    grid-template-columns:1fr;
+  }
+
+  .field-btn{
+    min-height:105px;
+  }
 }
 </style>
-
 </head>
 
 <body>
 
-<h1>Choose Your Study Field</h1>
+<main class="field-container">
 
-<button class="field-btn" onclick="window.location.href='business.html'">
-📚 Business
-</button><br><br>
-<button class="field-btn">💻 Computer Science</button><br><br>
-<button class="field-btn">⚕️ Nursing</button><br><br>
-<button class="field-btn">⚖️ Law</button><br><br>
+  <header class="field-header">
+    <div class="logo">🧠</div>
 
-<button class="field-btn" id="nextBtn">Next</button>
+    <h1>Choose Your Study Field</h1>
+
+    <p>
+      Select the subject area that best matches what you want to study.
+    </p>
+  </header>
+
+  <section class="field-card">
+
+    <div class="field-grid">
+
+      <button
+        class="field-btn selected"
+        data-field="Business"
+        data-page="business.html"
+      >
+        <span class="field-icon">📚</span>
+        <span class="field-name">Business</span>
+        <span class="field-description">
+          Management, finance, marketing, strategy, and economics.
+        </span>
+      </button>
+
+      <button
+        class="field-btn"
+        data-field="Computer Science"
+        data-page=""
+      >
+        <span class="field-icon">💻</span>
+        <span class="field-name">Computer Science</span>
+        <span class="field-description">
+          Programming, technology, systems, and software development.
+        </span>
+      </button>
+
+      <button
+        class="field-btn"
+        data-field="Nursing"
+        data-page=""
+      >
+        <span class="field-icon">⚕️</span>
+        <span class="field-name">Nursing</span>
+        <span class="field-description">
+          Patient care, health science, clinical practice, and medicine.
+        </span>
+      </button>
+
+      <button
+        class="field-btn"
+        data-field="Law"
+        data-page=""
+      >
+        <span class="field-icon">⚖️</span>
+        <span class="field-name">Law</span>
+        <span class="field-description">
+          Legal principles, cases, ethics, and professional practice.
+        </span>
+      </button>
+
+    </div>
+
+    <button class="next-btn" id="nextBtn">
+      Continue with Business →
+    </button>
+
+    <p class="helper-text" id="helperText">
+      Business is currently selected.
+    </p>
+
+  </section>
+
+</main>
 
 <script>
-document.getElementById("nextBtn").addEventListener("click", function () {
-    window.location.href = "dashboard.html";
+const fieldButtons = document.querySelectorAll(".field-btn");
+const nextButton = document.getElementById("nextBtn");
+const helperText = document.getElementById("helperText");
+
+let selectedField = "Business";
+let selectedPage = "business.html";
+
+fieldButtons.forEach(function(button){
+  button.addEventListener("click", function(){
+    fieldButtons.forEach(function(item){
+      item.classList.remove("selected");
+    });
+
+    button.classList.add("selected");
+
+    selectedField = button.dataset.field;
+    selectedPage = button.dataset.page;
+
+    nextButton.textContent =
+      "Continue with " + selectedField + " →";
+
+    helperText.textContent =
+      selectedField + " is currently selected.";
+  });
+});
+
+nextButton.addEventListener("click", function(){
+  if(selectedPage){
+    window.location.href = selectedPage;
+  }else{
+    helperText.textContent =
+      selectedField + " content will be added soon.";
+  }
 });
 </script>
+
 </body>
 </html>
