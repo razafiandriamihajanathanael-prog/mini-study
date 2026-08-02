@@ -1,274 +1,304 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Mini Study - Profile</title>
-.profile-details{
-  background:#fff;
-  margin:24px 0;
-  padding:24px;
-  border-radius:24px;
-  box-shadow:0 10px 30px rgba(0,0,0,.08);
-}
+  <title>Mini Study - Profile</title>
 
-.profile-details h2{
-  margin-bottom:20px;
-  color:#4f46e5;
-}
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
 
-.info-row{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:14px 0;
-  border-bottom:1px solid #ececec;
-}
+    body {
+      background: linear-gradient(135deg, #eef2ff, #f8fafc, #ffffff);
+      padding: 30px;
+      color: #1e293b;
+    }
 
-.info-row:last-child{
-  border-bottom:none;
-}
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding-bottom: 120px;
+    }
 
-.info-row span{
-  color:#777;
-}
+    .profile-card {
+      background: linear-gradient(135deg, #6d28d9, #2563eb);
+      color: white;
+      padding: 40px;
+      border-radius: 30px;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      margin-bottom: 30px;
+    }
 
-.edit-profile-button{
-  margin-top:24px;
-  width:100%;
-  padding:14px;
-  border:none;
-  border-radius:14px;
-  background:#5b4df5;
-  color:white;
-  font-size:16px;
-  font-weight:bold;
-  cursor:pointer;
-  transition:.3s;
-}
+    .avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 60px;
+      margin: 0 auto 20px;
+    }
 
-.edit-profile-button:hover{
-  background:#4338ca;
-}
-<style>
+    .profile-card h1 {
+      font-size: 34px;
+      margin-bottom: 10px;
+    }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,Helvetica,sans-serif;
-}
+    .profile-card p {
+      opacity: 0.9;
+    }
 
-body{
-background:linear-gradient(135deg,#eef2ff,#f8fafc,#ffffff);
-padding:30px;
-color:#1e293b;
-}
+    .profile-details {
+      background: white;
+      margin-bottom: 30px;
+      padding: 28px;
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    }
 
-.container{
-max-width:1100px;
-margin:auto;
-padding-bottom:120px;
-}
+    .profile-details h2 {
+      margin-bottom: 24px;
+      color: #4f46e5;
+    }
 
-.profile-card{
-background:linear-gradient(135deg,#6D28D9,#2563EB);
-color:white;
-padding:40px;
-border-radius:30px;
-text-align:center;
-box-shadow:0 20px 40px rgba(0,0,0,.15);
-margin-bottom:30px;
-}
+    .profile-info {
+      width: 100%;
+    }
 
-.avatar{
-width:120px;
-height:120px;
-border-radius:50%;
-background:white;
-display:flex;
-justify-content:center;
-align-items:center;
-font-size:60px;
-margin:auto;
-margin-bottom:20px;
-}
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      padding: 16px 0;
+      border-bottom: 1px solid #ececec;
+    }
 
-.profile-card h1{
-font-size:34px;
-margin-bottom:10px;
-}
+    .info-row:last-child {
+      border-bottom: none;
+    }
 
-.profile-card p{
-opacity:.9;
-}
+    .info-row span {
+      color: #777;
+    }
 
-.stats{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:20px;
-}
+    .info-row strong {
+      text-align: right;
+    }
 
-.stat{
-background:white;
-padding:25px;
-border-radius:20px;
-text-align:center;
-box-shadow:0 10px 30px rgba(0,0,0,.08);
-transition:.3s;
-}
+    .edit-profile-button {
+      margin-top: 24px;
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #6d28d9, #2563eb);
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
 
-.stat:hover{
-transform:translateY(-8px);
-}
+    .edit-profile-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(79, 70, 229, 0.25);
+    }
 
-.stat h2{
-font-size:34px;
-color:#6D28D9;
-margin-bottom:10px;
-}
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
 
-.stat p{
-color:#64748b;
-font-weight:bold;
-}
+    .stat {
+      background: white;
+      padding: 25px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      transition: 0.3s;
+    }
 
-.bottom-nav{
-position:fixed;
-bottom:20px;
-left:50%;
-transform:translateX(-50%);
-width:92%;
-max-width:540px;
-display:flex;
-justify-content:space-around;
-padding:12px;
-background:white;
-border-radius:24px;
-box-shadow:0 15px 35px rgba(0,0,0,.15);
-}
+    .stat:hover {
+      transform: translateY(-5px);
+    }
 
-.nav-item{
-display:flex;
-flex-direction:column;
-align-items:center;
-text-decoration:none;
-font-size:24px;
-color:#64748b;
-}
+    .stat h2 {
+      font-size: 34px;
+      color: #6d28d9;
+      margin-bottom: 10px;
+    }
 
-.nav-item span{
-font-size:12px;
-margin-top:5px;
-}
+    .stat p {
+      color: #64748b;
+      font-weight: bold;
+    }
 
-.nav-item.active{
-color:#6D28D9;
-font-weight:bold;
-}
+    .bottom-nav {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 92%;
+      max-width: 540px;
+      display: flex;
+      justify-content: space-around;
+      padding: 12px;
+      background: white;
+      border-radius: 24px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    }
 
-</style>
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      font-size: 24px;
+      color: #64748b;
+    }
 
+    .nav-item span {
+      font-size: 12px;
+      margin-top: 5px;
+    }
+
+    .nav-item.active {
+      color: #6d28d9;
+      font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 18px;
+      }
+
+      .profile-card {
+        padding: 30px 20px;
+      }
+
+      .profile-details {
+        padding: 22px;
+      }
+
+      .info-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+      }
+
+      .info-row strong {
+        text-align: left;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="container">
+  <div class="container">
 
-<div class="profile-card">
+    <div class="profile-card">
 
-<div class="avatar">
-👤
-</div>
+      <div class="avatar">
+        👤
+      </div>
 
-<h1>Nathanael</h1>
+      <h1>Nathanael</h1>
 
-<p>Learning one post-it at a time.</p>
+      <p>Learning one post-it at a time.</p>
 
-</div>
-<section class="profile-details">
+    </div>
 
-  <div class="profile-picture">
-    👤
+    <section class="profile-details">
+
+      <h2>Profile Information</h2>
+
+      <div class="profile-info">
+
+        <div class="info-row">
+          <span>Full Name</span>
+          <strong>Nathanael Razafiandriamihaja</strong>
+        </div>
+
+        <div class="info-row">
+          <span>Email</span>
+          <strong>nathanael@email.com</strong>
+        </div>
+
+        <div class="info-row">
+          <span>School</span>
+          <strong>Westcliff University</strong>
+        </div>
+
+        <div class="info-row">
+          <span>Program</span>
+          <strong>Business Administration</strong>
+        </div>
+
+      </div>
+
+      <button class="edit-profile-button">
+        Edit Profile
+      </button>
+
+    </section>
+
+    <div class="stats">
+
+      <div class="stat">
+        <h2>2</h2>
+        <p>Courses 📚</p>
+      </div>
+
+      <div class="stat">
+        <h2>0</h2>
+        <p>Favorites ❤️</p>
+      </div>
+
+    </div>
+
   </div>
 
-  <h1>Nathanael</h1>
-  <p class="profile-email">nathanael@email.com</p>
+  <nav class="bottom-nav">
 
-  <div class="profile-info">
+    <a href="study-field.html" class="nav-item">
+      🏠
+      <span>Home</span>
+    </a>
 
-    <div class="info-row">
-      <span>Full Name</span>
-      <strong>Nathanael Razafiandriamihaja</strong>
-    </div>
+    <a href="dashboard.html" class="nav-item">
+      📚
+      <span>Courses</span>
+    </a>
 
-    <div class="info-row">
-      <span>School</span>
-      <strong>Westcliff University</strong>
-    </div>
+    <a href="favorites.html" class="nav-item">
+      ❤️
+      <span>Favorites</span>
+    </a>
 
-    <div class="info-row">
-      <span>Program</span>
-      <strong>Business Administration</strong>
-    </div>
+    <a href="profile.html" class="nav-item active">
+      👤
+      <span>Profile</span>
+    </a>
 
-  </div>
-
-  <button class="edit-profile-button">
-    Edit Profile
-  </button>
-
-</section>
-<div class="stats">
-
-<div class="stat">
-<h2>0</h2>
-<p>Study Streak 🔥</p>
-</div>
-
-<div class="stat">
-<h2>2</h2>
-<p>Courses 📚</p>
-</div>
-
-<div class="stat">
-<h2>0</h2>
-<p>Favorites ❤️</p>
-</div>
-
-<div class="stat">
-<h2>0</h2>
-<p>Cards Completed ✅</p>
-</div>
-
-</div>
-
-</div>
-
-<nav class="bottom-nav">
-
-<a href="study-field.html" class="nav-item">
-🏠
-<span>Home</span>
-</a>
-
-<a href="dashboard.html" class="nav-item">
-📚
-<span>Courses</span>
-</a>
-
-<a href="favorites.html" class="nav-item">
-❤️
-<span>Favorites</span>
-</a>
-
-<a href="profile.html" class="nav-item active">
-👤
-<span>Profile</span>
-</a>
-
-</nav>
+  </nav>
 
 </body>
+
 </html>
