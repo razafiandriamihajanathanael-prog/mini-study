@@ -4,235 +4,466 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Mini Study • Settings</title>
+<title>Mini Study - Settings</title>
 
 <style>
+:root{
+  --purple:#6d28d9;
+  --blue:#2563eb;
+  --navy:#0f172a;
+  --text:#334155;
+  --muted:#64748b;
+  --page:#f5f7ff;
+  --card:#ffffff;
+  --border:#e2e8f0;
+}
 
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,Helvetica,sans-serif;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
-background:linear-gradient(135deg,#eef2ff,#f8fafc,#ffffff);
-padding:30px;
-color:#1e293b;
+  min-height:100vh;
+  padding:30px;
+  color:var(--navy);
+  background:
+    radial-gradient(circle at 10% 10%,rgba(196,181,253,.45),transparent 28%),
+    radial-gradient(circle at 90% 85%,rgba(147,197,253,.40),transparent 30%),
+    var(--page);
+  transition:background .3s,color .3s;
 }
 
-.container{
-max-width:700px;
-margin:auto;
+body.dark{
+  --navy:#f8fafc;
+  --text:#e2e8f0;
+  --muted:#94a3b8;
+  --page:#07111f;
+  --card:#0f1f33;
+  --border:#334155;
+
+  background:
+    radial-gradient(circle at 10% 10%,rgba(109,40,217,.25),transparent 28%),
+    radial-gradient(circle at 90% 85%,rgba(37,99,235,.22),transparent 30%),
+    var(--page);
 }
 
-h1{
-font-size:34px;
-margin-bottom:10px;
+.settings-container{
+  width:100%;
+  max-width:800px;
+  margin:auto;
+  padding-bottom:80px;
 }
 
-.subtitle{
-color:#64748b;
-margin-bottom:35px;
+.settings-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  margin-bottom:28px;
 }
 
-.card{
-background:white;
-border-radius:22px;
-padding:25px;
-margin-bottom:20px;
-box-shadow:0 10px 30px rgba(0,0,0,.08);
+.settings-header h1{
+  font-size:36px;
+  margin-bottom:6px;
 }
 
-.card h2{
-font-size:20px;
-margin-bottom:18px;
-color:#6d28d9;
+.settings-header p{
+  color:var(--muted);
 }
 
-.setting{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:16px 0;
-border-bottom:1px solid #ececec;
+.back-button{
+  padding:12px 18px;
+  border-radius:14px;
+  color:white;
+  text-decoration:none;
+  font-weight:bold;
+  background:linear-gradient(135deg,var(--purple),var(--blue));
 }
 
-.setting:last-child{
-border-bottom:none;
+.settings-card{
+  overflow:hidden;
+  border:1px solid var(--border);
+  border-radius:26px;
+  background:var(--card);
+  box-shadow:0 18px 45px rgba(15,23,42,.12);
 }
 
-.setting-info h3{
-font-size:16px;
-margin-bottom:4px;
+.setting-row{
+  min-height:88px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  padding:22px;
+  border-bottom:1px solid var(--border);
+}
+
+.setting-row:last-child{
+  border-bottom:none;
+}
+
+.setting-info{
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+
+.setting-icon{
+  width:48px;
+  height:48px;
+  display:grid;
+  place-items:center;
+  flex-shrink:0;
+  border-radius:15px;
+  font-size:24px;
+  background:#ede9fe;
+}
+
+.setting-info h2{
+  color:var(--navy);
+  font-size:18px;
+  margin-bottom:5px;
 }
 
 .setting-info p{
-font-size:13px;
-color:#64748b;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.4;
 }
 
+/* SWITCH */
+
 .switch{
-position:relative;
-display:inline-block;
-width:54px;
-height:30px;
+  position:relative;
+  width:56px;
+  height:31px;
+  flex-shrink:0;
 }
 
 .switch input{
-display:none;
+  display:none;
 }
 
 .slider{
-position:absolute;
-cursor:pointer;
-top:0;
-left:0;
-right:0;
-bottom:0;
-background:#cbd5e1;
-transition:.3s;
-border-radius:30px;
+  position:absolute;
+  inset:0;
+  cursor:pointer;
+  border-radius:999px;
+  background:#cbd5e1;
+  transition:.25s;
 }
 
-.slider:before{
-content:"";
-position:absolute;
-height:22px;
-width:22px;
-left:4px;
-bottom:4px;
-background:white;
-transition:.3s;
-border-radius:50%;
+.slider::before{
+  content:"";
+  position:absolute;
+  width:23px;
+  height:23px;
+  top:4px;
+  left:4px;
+  border-radius:50%;
+  background:white;
+  box-shadow:0 3px 8px rgba(0,0,0,.2);
+  transition:.25s;
 }
 
-input:checked + .slider{
-background:#6d28d9;
+.switch input:checked + .slider{
+  background:linear-gradient(135deg,var(--purple),var(--blue));
 }
 
-input:checked + .slider:before{
-transform:translateX(24px);
+.switch input:checked + .slider::before{
+  transform:translateX(25px);
 }
 
-.back-btn{
-display:inline-block;
-margin-top:15px;
-padding:14px 20px;
-border-radius:14px;
-background:linear-gradient(135deg,#6d28d9,#2563eb);
-color:white;
-text-decoration:none;
-font-weight:bold;
-transition:.3s;
+/* SELECT */
+
+.goal-select{
+  padding:11px 14px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  color:var(--text);
+  background:var(--card);
+  font-weight:bold;
+  outline:none;
 }
 
-.back-btn:hover{
-transform:translateY(-2px);
+/* RESET */
+
+.reset-button{
+  padding:12px 16px;
+  border:none;
+  border-radius:12px;
+  color:#be123c;
+  background:#ffe4e6;
+  font-weight:bold;
+  cursor:pointer;
 }
 
+.reset-button:hover{
+  background:#fecdd3;
+}
+
+.save-message{
+  min-height:22px;
+  margin-top:18px;
+  color:#16a34a;
+  text-align:center;
+  font-weight:bold;
+}
+
+@media(max-width:600px){
+  body{
+    padding:18px;
+  }
+
+  .settings-header{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .back-button{
+    width:100%;
+    text-align:center;
+  }
+
+  .setting-row{
+    align-items:flex-start;
+  }
+}
 </style>
-
 </head>
 
 <body>
 
-<div class="container">
+<main class="settings-container">
 
-<h1>⚙️ Settings</h1>
-<p class="subtitle">Customize your Mini Study experience.</p>
+<header class="settings-header">
 
-<div class="card">
+  <div>
+    <h1>⚙️ Settings</h1>
+    <p>Customize your Mini Study experience.</p>
+  </div>
 
-<h2>Preferences</h2>
+  <a href="dashboard.html" class="back-button">
+    ← Dashboard
+  </a>
 
-<div class="setting">
+</header>
 
-<div class="setting-info">
-<h3>Dark Mode</h3>
-<p>Switch between light and dark appearance.</p>
-</div>
+<section class="settings-card">
 
-<label class="switch">
-<input type="checkbox">
-<span class="slider"></span>
-</label>
+  <div class="setting-row">
 
-</div>
+    <div class="setting-info">
+      <div class="setting-icon">🌙</div>
 
-<div class="setting">
+      <div>
+        <h2>Dark Mode</h2>
+        <p>Use a darker appearance for nighttime studying.</p>
+      </div>
+    </div>
 
-<div class="setting-info">
-<h3>Notifications</h3>
-<p>Receive reminders to study every day.</p>
-</div>
+    <label class="switch">
+      <input type="checkbox" id="darkModeToggle">
+      <span class="slider"></span>
+    </label>
 
-<label class="switch">
-<input type="checkbox" checked>
-<span class="slider"></span>
-</label>
+  </div>
 
-</div>
+  <div class="setting-row">
 
-<div class="setting">
+    <div class="setting-info">
+      <div class="setting-icon">🔔</div>
 
-<div class="setting-info">
-<h3>Sound Effects</h3>
-<p>Play sounds when completing quizzes.</p>
-</div>
+      <div>
+        <h2>Study Notifications</h2>
+        <p>Save your preference for daily study reminders.</p>
+      </div>
+    </div>
 
-<label class="switch">
-<input type="checkbox">
-<span class="slider"></span>
-</label>
+    <label class="switch">
+      <input type="checkbox" id="notificationToggle">
+      <span class="slider"></span>
+    </label>
 
-</div>
+  </div>
 
-<div class="setting">
+  <div class="setting-row">
 
-<div class="setting-info">
-<h3>Auto Save</h3>
-<p>Automatically save your progress.</p>
-</div>
+    <div class="setting-info">
+      <div class="setting-icon">🔊</div>
 
-<label class="switch">
-<input type="checkbox" checked>
-<span class="slider"></span>
-</label>
+      <div>
+        <h2>Sound Effects</h2>
+        <p>Enable sounds for quizzes, goals, and achievements.</p>
+      </div>
+    </div>
 
-</div>
+    <label class="switch">
+      <input type="checkbox" id="soundToggle">
+      <span class="slider"></span>
+    </label>
 
-</div>
+  </div>
 
-<div class="card">
+  <div class="setting-row">
 
-<h2>Account</h2>
+    <div class="setting-info">
+      <div class="setting-icon">🎯</div>
 
-<div class="setting">
+      <div>
+        <h2>Daily Study Goal</h2>
+        <p>Choose how many cards you want to complete each day.</p>
+      </div>
+    </div>
 
-<div class="setting-info">
-<h3>Version</h3>
-<p>Mini Study v1.0</p>
-</div>
+    <select class="goal-select" id="dailyGoalSelect">
+      <option value="5">5 cards</option>
+      <option value="10">10 cards</option>
+      <option value="15">15 cards</option>
+      <option value="20">20 cards</option>
+    </select>
 
-</div>
+  </div>
 
-<div class="setting">
+  <div class="setting-row">
 
-<div class="setting-info">
-<h3>Storage Used</h3>
-<p>2 MB</p>
-</div>
+    <div class="setting-info">
+      <div class="setting-icon">🗑️</div>
 
-</div>
+      <div>
+        <h2>Reset App Progress</h2>
+        <p>Delete streaks, goals, XP, notes, and saved favorites.</p>
+      </div>
+    </div>
 
-</div>
+    <button class="reset-button" id="resetButton">
+      Reset
+    </button>
 
-<a href="dashboard.html" class="back-btn">
-← Back to Dashboard
-</a>
+  </div>
 
-</div>
+</section>
+
+<p class="save-message" id="saveMessage"></p>
+
+</main>
+
+<script>
+const darkModeToggle =
+  document.getElementById("darkModeToggle");
+
+const notificationToggle =
+  document.getElementById("notificationToggle");
+
+const soundToggle =
+  document.getElementById("soundToggle");
+
+const dailyGoalSelect =
+  document.getElementById("dailyGoalSelect");
+
+const resetButton =
+  document.getElementById("resetButton");
+
+const saveMessage =
+  document.getElementById("saveMessage");
+
+function showSavedMessage(message){
+  saveMessage.textContent = message;
+
+  setTimeout(function(){
+    saveMessage.textContent = "";
+  },2000);
+}
+
+function loadSettings(){
+  const darkMode =
+    localStorage.getItem("miniStudyDarkMode") === "true";
+
+  const notifications =
+    localStorage.getItem("miniStudyNotifications") === "true";
+
+  const sounds =
+    localStorage.getItem("miniStudySounds") !== "false";
+
+  const dailyGoal =
+    localStorage.getItem("miniStudyDailyGoal") || "5";
+
+  darkModeToggle.checked = darkMode;
+  notificationToggle.checked = notifications;
+  soundToggle.checked = sounds;
+  dailyGoalSelect.value = dailyGoal;
+
+  document.body.classList.toggle("dark",darkMode);
+}
+
+darkModeToggle.addEventListener("change",function(){
+  const enabled = darkModeToggle.checked;
+
+  localStorage.setItem("miniStudyDarkMode",enabled);
+  document.body.classList.toggle("dark",enabled);
+
+  showSavedMessage(
+    enabled ? "Dark mode enabled." : "Light mode enabled."
+  );
+});
+
+notificationToggle.addEventListener("change",function(){
+  localStorage.setItem(
+    "miniStudyNotifications",
+    notificationToggle.checked
+  );
+
+  showSavedMessage("Notification preference saved.");
+});
+
+soundToggle.addEventListener("change",function(){
+  localStorage.setItem(
+    "miniStudySounds",
+    soundToggle.checked
+  );
+
+  showSavedMessage("Sound preference saved.");
+});
+
+dailyGoalSelect.addEventListener("change",function(){
+  localStorage.setItem(
+    "miniStudyDailyGoal",
+    dailyGoalSelect.value
+  );
+
+  showSavedMessage(
+    "Daily goal changed to " +
+    dailyGoalSelect.value +
+    " cards."
+  );
+});
+
+resetButton.addEventListener("click",function(){
+  const confirmed = confirm(
+    "Reset all Mini Study progress? This cannot be undone."
+  );
+
+  if(!confirmed){
+    return;
+  }
+
+  const darkMode =
+    localStorage.getItem("miniStudyDarkMode");
+
+  localStorage.clear();
+
+  if(darkMode !== null){
+    localStorage.setItem("miniStudyDarkMode",darkMode);
+  }
+
+  showSavedMessage("App progress has been reset.");
+});
+
+loadSettings();
+</script>
 
 </body>
 </html>
