@@ -432,7 +432,23 @@ body{
 .course-card.strategy{
   background:linear-gradient(145deg,#ede9fe,#c4b5fd);
 }
+.course-card.computer{
 
+background:linear-gradient(
+145deg,
+#0f172a,
+#1e3a8a,
+#312e81
+);
+
+color:white;
+
+}
+.course-card.computer p{
+
+color:#cbd5e1;
+
+}
 .course-icon{
   width:58px;
   height:58px;
@@ -817,7 +833,7 @@ padding-bottom:120px;
   <article class="stat-card">
     <div class="stat-icon">📚</div>
     <h3>Courses</h3>
-    <strong>2</strong>
+    <strong>3</strong>
   </article>
 
   <article class="stat-card">
@@ -874,6 +890,7 @@ padding-bottom:120px;
         <button class="favorite" onclick="toggleFavorite(this,'Peregrine Assessment')">
           ♡
         </button>
+
       </div>
 
     </article>
@@ -911,7 +928,43 @@ padding-bottom:120px;
       </div>
 
     </article>
+<article class="course-card computer">
 
+  <div class="course-icon">💻</div>
+
+  <span class="course-tag">Computer Science</span>
+
+  <h3>From Data to Decisions: A Practical Analytics Path</h3>
+
+  <p>
+    Learn data analytics from the ground up including Excel,
+    SQL, Power BI, Tableau, dashboards, business intelligence,
+    and data-driven decision making.
+  </p>
+
+  <div class="progress-label">
+      <span>Your progress</span>
+      <span id="computerPercent">0%</span>
+  </div>
+
+  <div class="progress-track">
+      <div class="progress-fill" id="computerProgress"></div>
+  </div>
+
+  <div class="course-actions">
+
+      <a class="open-course" href="computer-science.html">
+          Open Course →
+      </a>
+
+      <button class="favorite"
+      onclick="toggleFavorite(this,'Computer Science')">
+          ♡
+      </button>
+
+  </div>
+
+</article>
   </div>
 
 </section>
@@ -1010,6 +1063,9 @@ function loadDashboard(){
 
     document.getElementById("strategyProgress").style.width = "10%";
     document.getElementById("strategyPercent").textContent = "10%";
+
+    document.getElementById("computerProgress").style.width = "0%";
+document.getElementById("computerPercent").textContent = "0%";
   },300);
 }
 const profileButton = document.getElementById("profileButton");
@@ -1040,6 +1096,9 @@ logoutButton.addEventListener("click", function(){
     },800);
 
 });
+logoutButton.addEventListener(...);
+
+loadDashboard();
 </script>
 
 </body>
