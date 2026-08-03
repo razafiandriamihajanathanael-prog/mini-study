@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Health & Emergency Courses</title>
+
+<style>
+:root{
+  --red:#dc2626;
+  --dark-red:#991b1b;
+  --blue:#2563eb;
+  --navy:#0f172a;
+  --white:#ffffff;
+  --soft-red:#fee2e2;
+  --soft-blue:#dbeafe;
+  --muted:#64748b;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+  min-height:100vh;
+  padding:30px;
+  color:var(--navy);
+
+  background:
+    radial-gradient(circle at 10% 10%,rgba(254,202,202,.65),transparent 28%),
+    radial-gradient(circle at 90% 85%,rgba(191,219,254,.55),transparent 30%),
+    linear-gradient(145deg,#fff7f7,#f8fafc,#eff6ff);
+}
+
+.page{
+  width:100%;
+  max-width:1100px;
+  margin:auto;
+}
+
+.back{
+  display:inline-block;
+  margin-bottom:24px;
+  padding:10px 16px;
+  border-radius:14px;
+  color:var(--dark-red);
+  text-decoration:none;
+  font-weight:bold;
+  background:white;
+  box-shadow:0 8px 20px rgba(15,23,42,.08);
+  transition:.25s;
+}
+
+.back:hover{
+  color:white;
+  background:linear-gradient(135deg,var(--red),var(--blue));
+  transform:translateX(-4px);
+}
+
+.header{
+  position:relative;
+  overflow:hidden;
+  padding:38px;
+  margin-bottom:28px;
+  border-radius:30px;
+  color:white;
+  background:linear-gradient(135deg,var(--dark-red),var(--red),var(--blue));
+  box-shadow:0 22px 50px rgba(153,27,27,.25);
+}
+
+.header::before{
+  content:"✚";
+  position:absolute;
+  right:35px;
+  top:10px;
+  font-size:120px;
+  opacity:.12;
+}
+
+.header::after{
+  content:"🚑";
+  position:absolute;
+  right:55px;
+  bottom:20px;
+  font-size:70px;
+  opacity:.25;
+}
+
+.header-content{
+  position:relative;
+  z-index:2;
+  max-width:680px;
+}
+
+.header h1{
+  font-size:clamp(34px,5vw,48px);
+  margin-bottom:12px;
+}
+
+.header p{
+  max-width:620px;
+  font-size:18px;
+  line-height:1.6;
+  opacity:.92;
+}
+
+.course-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:24px;
+}
+
+.course-card{
+  position:relative;
+  overflow:hidden;
+  display:block;
+  min-height:300px;
+  padding:30px;
+  border:2px solid rgba(220,38,38,.15);
+  border-radius:28px;
+  color:var(--navy);
+  text-decoration:none;
+  background:linear-gradient(145deg,#ffffff,#fff1f2);
+  box-shadow:0 16px 38px rgba(15,23,42,.12);
+  transition:.3s;
+}
+
+.course-card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 25px 50px rgba(15,23,42,.17);
+  border-color:rgba(220,38,38,.35);
+}
+
+.bandage{
+  position:absolute;
+  width:78px;
+  height:26px;
+  border-radius:8px;
+  background:#f5d0a9;
+  border:2px solid #d6a875;
+  box-shadow:0 5px 12px rgba(0,0,0,.12);
+}
+
+.bandage::before{
+  content:"";
+  position:absolute;
+  width:28px;
+  height:20px;
+  top:1px;
+  left:23px;
+  border-radius:5px;
+  background:#e8b987;
+  background-image:radial-gradient(#b98255 1px,transparent 1px);
+  background-size:5px 5px;
+}
+
+.bandage.top-right{
+  top:18px;
+  right:-14px;
+  transform:rotate(35deg);
+}
+
+.bandage.bottom-left{
+  bottom:18px;
+  left:-16px;
+  transform:rotate(-30deg);
+}
+
+.course-icon{
+  width:68px;
+  height:68px;
+  display:grid;
+  place-items:center;
+  margin-bottom:20px;
+  border-radius:20px;
+  font-size:36px;
+  background:linear-gradient(135deg,var(--soft-red),var(--soft-blue));
+  box-shadow:0 10px 24px rgba(220,38,38,.14);
+  animation:pulseIcon 2.5s ease-in-out infinite;
+}
+
+@keyframes pulseIcon{
+  0%,100%{
+    transform:scale(1);
+  }
+
+  50%{
+    transform:scale(1.06);
+  }
+}
+
+.course-tag{
+  display:inline-block;
+  margin-bottom:13px;
+  padding:7px 12px;
+  border-radius:999px;
+  color:var(--dark-red);
+  background:var(--soft-red);
+  font-size:12px;
+  font-weight:bold;
+  text-transform:uppercase;
+  letter-spacing:.07em;
+}
+
+.course-card h2{
+  max-width:700px;
+  margin-bottom:12px;
+  font-size:29px;
+  line-height:1.25;
+}
+
+.course-card p{
+  max-width:720px;
+  margin-bottom:20px;
+  color:#475569;
+  line-height:1.65;
+}
+
+.course-info{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+.info-chip{
+  padding:8px 12px;
+  border-radius:12px;
+  color:var(--dark-red);
+  background:white;
+  font-size:13px;
+  font-weight:bold;
+  box-shadow:0 6px 15px rgba(15,23,42,.07);
+}
+
+.start-text{
+  display:inline-block;
+  margin-top:22px;
+  color:white;
+  padding:13px 18px;
+  border-radius:14px;
+  font-weight:bold;
+  background:linear-gradient(135deg,var(--red),var(--blue));
+}
+
+body.dark-mode{
+  color:#f8fafc;
+  background:
+    radial-gradient(circle at 10% 10%,rgba(127,29,29,.35),transparent 28%),
+    radial-gradient(circle at 90% 85%,rgba(30,64,175,.30),transparent 30%),
+    linear-gradient(145deg,#020617,#0f172a,#111827);
+}
+
+body.dark-mode .course-card{
+  color:#f8fafc;
+  background:linear-gradient(145deg,#1e293b,#172033);
+  border-color:#475569;
+}
+
+body.dark-mode .course-card p{
+  color:#cbd5e1;
+}
+
+body.dark-mode .info-chip{
+  color:#fecaca;
+  background:#334155;
+}
+
+body.dark-mode .back{
+  color:#fecaca;
+  background:#1e293b;
+}
+
+@media(max-width:750px){
+  .course-grid{
+    grid-template-columns:1fr;
+  }
+
+  .header{
+    padding:30px 24px;
+  }
+
+  .course-card{
+    padding:25px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<main class="page">
+
+<a class="back" href="study-field.html">
+  ← Back to Study Fields
+</a>
+
+<section class="header">
+
+  <div class="header-content">
+    <h1>🚑 Health & Emergency Care</h1>
+
+    <p>
+      Learn how to recognize dangerous situations, protect yourself,
+      contact emergency services, and provide safe basic assistance
+      until trained professionals arrive.
+    </p>
+  </div>
+
+</section>
+
+<section class="course-grid">
+
+  <a class="course-card" href="emergency-response.html">
+
+    <div class="bandage top-right"></div>
+    <div class="bandage bottom-left"></div>
+
+    <div class="course-icon">⛑️</div>
+
+    <span class="course-tag">Emergency Preparedness</span>
+
+    <h2>
+      First Response: Emergency Actions in Dangerous Situations
+    </h2>
+
+    <p>
+      Study the first actions to take during urgent situations,
+      including scene safety, calling emergency services,
+      basic first aid awareness, and helping without creating
+      additional danger.
+    </p>
+
+    <div class="course-info">
+      <span class="info-chip">🚨 Emergency Response</span>
+      <span class="info-chip">🩹 First Aid</span>
+      <span class="info-chip">🛡️ Personal Safety</span>
+    </div>
+
+    <span class="start-text">
+      Open Course →
+    </span>
+
+  </a>
+
+</section>
+
+</main>
+
+<script src="theme.js"></script>
+
+</body>
+</html>

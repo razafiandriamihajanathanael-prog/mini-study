@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>First Response - Emergency Actions</title>
+
+<style>
+:root{
+  --red:#dc2626;
+  --dark-red:#991b1b;
+  --blue:#2563eb;
+  --navy:#0f172a;
+  --white:#ffffff;
+  --soft-red:#fee2e2;
+  --soft-blue:#dbeafe;
+  --muted:#64748b;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+  min-height:100vh;
+  padding:26px;
+  color:var(--navy);
+
+  background:
+    linear-gradient(rgba(220,38,38,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(37,99,235,.035) 1px,transparent 1px),
+    radial-gradient(circle at 10% 10%,rgba(254,202,202,.65),transparent 27%),
+    radial-gradient(circle at 90% 85%,rgba(191,219,254,.55),transparent 30%),
+    linear-gradient(145deg,#fff7f7,#f8fafc,#eff6ff);
+
+  background-size:
+    34px 34px,
+    34px 34px,
+    auto,
+    auto,
+    auto;
+}
+
+.page{
+  width:100%;
+  max-width:1200px;
+  margin:auto;
+}
+
+.back{
+  display:inline-block;
+  margin-bottom:22px;
+  padding:11px 17px;
+  border-radius:14px;
+  color:white;
+  text-decoration:none;
+  font-weight:bold;
+  background:linear-gradient(135deg,var(--red),var(--blue));
+  box-shadow:0 9px 22px rgba(220,38,38,.18);
+  transition:.25s;
+}
+
+.back:hover{
+  transform:translateX(-4px);
+}
+
+.header{
+  position:relative;
+  overflow:hidden;
+  padding:38px;
+  margin-bottom:28px;
+  border-radius:30px;
+  color:white;
+  background:linear-gradient(135deg,var(--dark-red),var(--red),var(--blue));
+  box-shadow:0 22px 52px rgba(153,27,27,.28);
+}
+
+.header::before{
+  content:"✚";
+  position:absolute;
+  right:30px;
+  top:-35px;
+  font-size:190px;
+  opacity:.09;
+}
+
+.header::after{
+  content:"🚑";
+  position:absolute;
+  right:50px;
+  bottom:18px;
+  font-size:74px;
+  opacity:.28;
+  animation:ambulanceMove 3s ease-in-out infinite;
+}
+
+@keyframes ambulanceMove{
+  0%,100%{
+    transform:translateX(0);
+  }
+
+  50%{
+    transform:translateX(-14px);
+  }
+}
+
+.header-content{
+  position:relative;
+  z-index:2;
+  max-width:720px;
+}
+
+.emergency-label{
+  display:inline-block;
+  margin-bottom:15px;
+  padding:7px 13px;
+  border-radius:999px;
+  color:white;
+  background:rgba(255,255,255,.18);
+  font-size:12px;
+  font-weight:bold;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+
+.header h1{
+  font-size:clamp(32px,5vw,50px);
+  margin-bottom:12px;
+}
+
+.header p{
+  max-width:670px;
+  font-size:17px;
+  line-height:1.65;
+  opacity:.92;
+}
+
+.warning{
+  margin-bottom:26px;
+  padding:18px;
+  border-left:6px solid var(--red);
+  border-radius:16px;
+  color:#7f1d1d;
+  background:#fff1f2;
+  box-shadow:0 10px 24px rgba(15,23,42,.08);
+  line-height:1.6;
+}
+
+.flashcard-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:22px;
+}
+
+.flashcard{
+  position:relative;
+  overflow:hidden;
+  min-height:320px;
+  padding:26px;
+  border:2px solid rgba(220,38,38,.16);
+  border-radius:26px;
+  background:linear-gradient(145deg,#ffffff,#fff7f7);
+  box-shadow:0 15px 36px rgba(15,23,42,.12);
+  transition:.3s;
+}
+
+.flashcard:hover{
+  transform:translateY(-8px);
+  border-color:rgba(220,38,38,.42);
+  box-shadow:0 24px 48px rgba(15,23,42,.17);
+}
+
+.flashcard:nth-child(even){
+  background:linear-gradient(145deg,#ffffff,#eff6ff);
+  border-color:rgba(37,99,235,.16);
+}
+
+.bandage{
+  position:absolute;
+  width:76px;
+  height:25px;
+  border:2px solid #d6a875;
+  border-radius:8px;
+  background:#f4cfa5;
+  box-shadow:0 5px 12px rgba(0,0,0,.12);
+}
+
+.bandage::before{
+  content:"";
+  position:absolute;
+  width:27px;
+  height:19px;
+  left:22px;
+  top:1px;
+  border-radius:5px;
+  background-color:#e5b37e;
+  background-image:radial-gradient(#a96f42 1px,transparent 1px);
+  background-size:5px 5px;
+}
+
+.bandage.corner{
+  top:16px;
+  right:-17px;
+  transform:rotate(38deg);
+}
+
+.card-number{
+  display:inline-grid;
+  place-items:center;
+  width:44px;
+  height:44px;
+  margin-bottom:16px;
+  border-radius:14px;
+  color:white;
+  font-size:17px;
+  font-weight:bold;
+  background:linear-gradient(135deg,var(--red),var(--blue));
+}
+
+.card-icon{
+  font-size:38px;
+  margin-bottom:12px;
+}
+
+.flashcard h2{
+  margin-bottom:13px;
+  font-size:23px;
+  line-height:1.3;
+}
+
+.flashcard p,
+.flashcard li{
+  color:#475569;
+  font-size:15px;
+  line-height:1.6;
+}
+
+.flashcard ul{
+  padding-left:20px;
+}
+
+.action-box{
+  margin-top:17px;
+  padding:13px;
+  border-radius:13px;
+  color:#7f1d1d;
+  background:var(--soft-red);
+  font-weight:bold;
+  line-height:1.45;
+}
+
+.flashcard:nth-child(even) .action-box{
+  color:#1e3a8a;
+  background:var(--soft-blue);
+}
+
+.call-box{
+  margin-top:28px;
+  padding:25px;
+  border-radius:24px;
+  color:white;
+  text-align:center;
+  background:linear-gradient(135deg,var(--dark-red),var(--red),var(--blue));
+  box-shadow:0 18px 42px rgba(153,27,27,.25);
+}
+
+.call-box h2{
+  margin-bottom:9px;
+  font-size:28px;
+}
+
+.call-box p{
+  line-height:1.6;
+  opacity:.92;
+}
+
+body.dark-mode{
+  color:#f8fafc;
+
+  background:
+    linear-gradient(rgba(248,250,252,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(248,250,252,.025) 1px,transparent 1px),
+    radial-gradient(circle at 10% 10%,rgba(127,29,29,.35),transparent 28%),
+    radial-gradient(circle at 90% 85%,rgba(30,64,175,.30),transparent 30%),
+    linear-gradient(145deg,#020617,#0f172a,#111827);
+
+  background-size:
+    34px 34px,
+    34px 34px,
+    auto,
+    auto,
+    auto;
+}
+
+body.dark-mode .flashcard{
+  color:#f8fafc;
+  background:linear-gradient(145deg,#1e293b,#172033);
+  border-color:#475569;
+}
+
+body.dark-mode .flashcard p,
+body.dark-mode .flashcard li{
+  color:#cbd5e1;
+}
+
+body.dark-mode .warning{
+  color:#fecaca;
+  background:#450a0a;
+  border-color:#ef4444;
+}
+
+@media(max-width:950px){
+  .flashcard-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media(max-width:650px){
+  body{
+    padding:16px;
+  }
+
+  .flashcard-grid{
+    grid-template-columns:1fr;
+  }
+
+  .header{
+    padding:30px 23px;
+  }
+
+  .header::after{
+    font-size:48px;
+    right:20px;
+    opacity:.20;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<main class="page">
+
+<a class="back" href="dashboard.html">
+  ← Back to Dashboard
+</a>
+
+<section class="header">
+
+  <div class="header-content">
+
+    <span class="emergency-label">
+      Emergency Awareness Course
+    </span>
+
+    <h1>
+      🚑 First Response
+    </h1>
+
+    <p>
+      Emergency Actions in Dangerous Situations — learn how to
+      recognize urgent conditions, protect the scene, request help,
+      and provide basic support until trained responders arrive.
+    </p>
+
+  </div>
+
+</section>
+
+<div class="warning">
+  <strong>Important:</strong>
+  This course is for general awareness only. In a real emergency,
+  call 911 in the United States and follow the dispatcher’s instructions.
+  Formal CPR and first-aid certification is strongly recommended.
+</div>
+
+<section class="flashcard-grid">
+
+  <article class="flashcard">
+
+    <div class="bandage corner"></div>
+
+    <div class="card-number">01</div>
+    <div class="card-icon">🛡️</div>
+
+    <h2>Check Scene Safety</h2>
+
+    <p>
+      Before approaching, look for traffic, fire, electricity,
+      chemicals, violence, unstable structures, or other hazards.
+    </p>
+
+    <div class="action-box">
+      Do not become a second injured person.
+    </div>
+
+  </article>
+
+  <article class="flashcard">
+
+    <div class="bandage corner"></div>
+
+    <div class="card-number">02</div>
+    <div class="card-icon">📞</div>
+
+    <h2>Call Emergency Services</h2>
+
+    <p>
+      Call 911 for someone who is unresponsive, has difficulty
+      breathing, shows signs of stroke, has life-threatening
+      bleeding, or has another serious emergency.
+    </p>
+
+    <div class="action-box">
+      Give the location and follow the dispatcher’s instructions.
+    </div>
+
+  </article>
+
+  <article class="flashcard">
+
+    <div class="bandage corner"></div>
+
+    <div class="card-number">03</div>
+    <div class="card-icon">❤️</div>
+
+    <h2>Sudden Adult Collapse</h2>
+
+    <p>
+      For a teen or adult who suddenly collapses and is not responding:
+    </p>
+
+    <ul>
+      <li>Call 911 or send someone to call.</li>
+      <li>Push hard and fast in the center of the chest.</li>
+      <li>Use an AED when available.</li>
+    </ul>
+
+    <div class="action-box">
+      Hands-only CPR is intended for sudden teen or adult collapse.
+    </div>
+
+  </article>
+
+  <article class="flashcard">
+
+    <div class="bandage corner"></div>
+
+    <div class="card-number">04</div>
+    <div class="card-icon">🫁</div>
+
+    <h2>Choking</h2>
+
+    <p>
+      A person with severe choking may be unable to speak,
+      cough effectively, or breathe.
+    </p>
+
+    <ul>
+      <li>Call 911 or have someone call.</li>
+      <li>Provide trained choking care.</li>
+      <li>Continue until the object clears or help arrives.</li>
+    </ul>
+
+    <div class="action-box">
+      Infant choking care is different from adult care.
+    </div>
+
+  </article>
+
+  <article class="flashcard">
+
+    <div class="bandage corner"></div>
+
+    <div class="card-number">05</div>
+    <div class="card-icon">🩸</div>
+
+    <h2>Severe Bleeding</h2>
+
+    <p>
+      Life-threatening bleeding requires immediate action.
+    </p>
+
+    <ul>
+      <li>Call 911.</li>
+      <li>Apply firm, direct pressure to the wound.</li>
+      <li>Use protective gloves when available.</li>
+      <li>Use a tourniquet only when appropriate and trained.</li>
+    </ul>
+
+    <div class="action-box">
+      Maintain pressure until emergency help takes over.
+    </div>
+
+  </article>
+
+  <article class="flashcard">
+
+    <div class="bandage corner"></div>
+
+    <div class="card-number">06</div>
+    <div class="card-icon">🔥</div>
+
+    <h2>Burns</h2>
+
+    <p>
+      First stop the burning process and make sure the area is safe.
+    </p>
+
+    <ul>
+      <li>Move away from the heat source.</li>
+      <li>Cool a thermal burn with clean, cool running water.</li>
+      <li>Do not apply ice directly to the burn.</li>
+      <li>Seek emergency help for serious burns.</li>
+    </ul>
+
+    <div class="action-box">
+      Do not remove material that is stuck to the skin.
+    </div>
+
+  </article>
+
+  <article class="flashcard">
+
+    <div class="bandage corner"></div>
+
+    <div class="card-number">07</div>
+    <div class="card-icon">⚡</div>
+
+    <h2>Seizure</h2>
+
+    <p>
+      During a seizure, focus on protecting the person from injury.
+    </p>
+
+    <ul>
+      <li>Clear dangerous objects from the area.</li>
+      <li>Do not restrain the person.</li>
+      <li>Do not place anything in their mouth.</li>
+      <li>Time the seizure and call for help when needed.</li>
+    </ul>
+
+    <div class="action-box">
+      Stay nearby and monitor breathing after movement stops.
+    </div>
+
+  </article>
+
+  <article class="flashcard">
+
+    <div class="bandage corner"></div>
+
+    <div class="card-number">08</div>
+    <div class="card-icon">🧠</div>
+
+    <h2>Recognize a Stroke</h2>
+
+    <p>Remember F.A.S.T.:</p>
+
+    <ul>
+      <li><strong>Face:</strong> Is one side drooping?</li>
+      <li><strong>Arms:</strong> Does one arm drift downward?</li>
+      <li><strong>Speech:</strong> Is speech slurred or unusual?</li>
+      <li><strong>Time:</strong> Call 911 immediately.</li>
+    </ul>
+
+    <div class="action-box">
+      Note when the symptoms first appeared.
+    </div>
+
+  </article>
+
+  <article class="flashcard">
+
+    <div class="bandage corner"></div>
+
+    <div class="card-number">09</div>
+    <div class="card-icon">☠️</div>
+
+    <h2>Possible Poisoning</h2>
+
+    <p>
+      Do not guess at treatment or automatically make the person vomit.
+    </p>
+
+    <ul>
+      <li>Call Poison Control in the U.S.: 1-800-222-1222.</li>
+      <li>Keep the container or product information nearby.</li>
+      <li>Call 911 for collapse, seizure, breathing trouble, or inability to wake.</li>
+    </ul>
+
+    <div class="action-box">
+      Poisoning instructions depend on the specific substance.
+    </div>
+
+  </article>
+
+</section>
+
+<section class="call-box">
+
+  <h2>🚨 When in Doubt, Call for Help</h2>
+
+  <p>
+    Protect yourself, call emergency services, follow dispatcher
+    instructions, and provide only the care you are trained and able
+    to perform safely.
+  </p>
+
+</section>
+
+</main>
+
+<script src="theme.js"></script>
+
+</body>
+</html>
