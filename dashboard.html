@@ -1030,17 +1030,47 @@ function toggleFavorite(button, courseName){
 
 
 function completeGoal(){
-  document.getElementById("goalText").textContent =
-    "Great job! Today’s study goal is complete. 🎉";
 
-  document.getElementById("completedCards").textContent = "5";
-  document.getElementById("streakNumber").textContent = "1 Day";
+    const today = new Date().toDateString();
 
-  localStorage.setItem("miniStudyGoalComplete","yes");
-  localStorage.setItem("miniStudyCompletedCards","5");
-  localStorage.setItem("miniStudyStreak","1 Day");
+    let streak =
+        parseInt(localStorage.getItem("miniStudyStreak")) || 0;
 
-  showMessage("Daily goal completed!");
+    const lastStudy =
+        localStorage.getItem("miniStudyLastStudy");
+
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+
+    if(lastStudy === today){
+
+        showMessage("Today's goal is already completed!");
+        return;
+
+    }else if(lastStudy === yesterday.toDateString()){
+
+        streak++;
+
+    }else{
+
+        streak = 1;
+
+    }
+
+    localStorage.setItem("miniStudyStreak", streak);
+    localStorage.setItem("miniStudyLastStudy", today);
+
+    document.getElementById("streakNumber").textContent =
+        streak + (streak === 1 ? " Day" : " Days");
+
+    document.getElementById("completedCards").textContent = "5";
+
+    document.getElementById("goalText").textContent =
+        "Great job! Today's study goal is complete. 🎉";
+
+    localStorage.setItem("miniStudyGoalComplete","yes");
+
+    showMessage("🔥 Streak: " + streak + " Day" + (streak>1?"s":""));
 }
 
 function loadDashboard(){
@@ -1053,8 +1083,11 @@ function loadDashboard(){
     document.getElementById("completedCards").textContent =
       localStorage.getItem("miniStudyCompletedCards") || "5";
 
-    document.getElementById("streakNumber").textContent =
-      localStorage.getItem("miniStudyStreak") || "1 Day";
+  const streak =
+parseInt(localStorage.getItem("miniStudyStreak")) || 0;
+
+document.getElementById("streakNumber").textContent =
+streak + (streak === 1 ? " Day" : " Days");
   }
 
   setTimeout(function(){
