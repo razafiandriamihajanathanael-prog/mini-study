@@ -449,6 +449,32 @@ color:white;
 color:#cbd5e1;
 
 }
+.course-card.health{
+  background:linear-gradient(145deg,#fff1f2,#fecaca,#dbeafe);
+  border:2px solid rgba(220,38,38,.18);
+}
+
+.course-card.health p{
+  color:#475569;
+}
+
+.course-card.health .course-icon{
+  background:linear-gradient(135deg,#fee2e2,#dbeafe);
+}
+
+.course-card.health .open-course{
+  background:linear-gradient(90deg,#dc2626,#2563eb);
+}
+
+body.dark-mode .course-card.health{
+  color:#f8fafc;
+  background:linear-gradient(145deg,#450a0a,#1e293b,#172554);
+  border-color:#475569;
+}
+
+body.dark-mode .course-card.health p{
+  color:#cbd5e1;
+}
 .course-icon{
   width:58px;
   height:58px;
@@ -866,7 +892,7 @@ color:#cbd5e1;
   <article class="stat-card">
     <div class="stat-icon">📚</div>
     <h3>Courses</h3>
-    <strong>3</strong>
+    <strong>4</strong>
   </article>
 
   <article class="stat-card">
@@ -994,6 +1020,45 @@ color:#cbd5e1;
       onclick="toggleFavorite(this,'Computer Science')">
           ♡
       </button>
+
+  </div>
+
+</article>
+<article class="course-card health">
+
+  <div class="course-icon">🚑</div>
+
+  <span class="course-tag">Health & Emergency Care</span>
+
+  <h3>First Response: Emergency Actions in Dangerous Situations</h3>
+
+  <p>
+    Learn scene safety, emergency calling, basic first-aid awareness,
+    severe bleeding response, burns, seizures, choking, stroke signs,
+    and other urgent situations.
+  </p>
+
+  <div class="progress-label">
+    <span>Your progress</span>
+    <span id="healthPercent">0%</span>
+  </div>
+
+  <div class="progress-track">
+    <div class="progress-fill" id="healthProgress"></div>
+  </div>
+
+  <div class="course-actions">
+
+    <a class="open-course" href="emergency-response.html">
+      Open Course →
+    </a>
+
+    <button
+      class="favorite"
+      onclick="toggleFavorite(this,'Health & Emergency Care')"
+    >
+      ♡
+    </button>
 
   </div>
 
@@ -1132,6 +1197,8 @@ streak + (streak === 1 ? " Day" : " Days");
 
     document.getElementById("computerProgress").style.width = "0%";
 document.getElementById("computerPercent").textContent = "0%";
+document.getElementById("healthProgress").style.width = "0%";
+document.getElementById("healthPercent").textContent = "0%";
   },300);
 }
 const profileButton = document.getElementById("profileButton");
