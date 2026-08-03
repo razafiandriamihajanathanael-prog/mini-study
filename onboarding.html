@@ -127,6 +127,39 @@ background:#5B21B6;
 position:relative;
 z-index:2;
 }
+body.dark-mode{
+background:linear-gradient(135deg,#020617,#0f172a,#1e293b);
+color:white;
+}
+
+body.dark-mode .card{
+background:#1e293b;
+}
+
+body.dark-mode .card h2{
+color:white;
+}
+
+body.dark-mode .card p{
+color:#cbd5e1;
+}
+
+body.dark-mode .subtitle{
+color:#94a3b8;
+}
+
+body.dark-mode .tag{
+background:#312e81;
+color:#c4b5fd;
+}
+
+body.dark-mode .bottom-nav{
+background:#0f172a;
+}
+
+body.dark-mode .nav-item{
+color:#cbd5e1;
+}
 </style>
 
 </head>
@@ -180,6 +213,7 @@ document.getElementById("continueBtn").addEventListener("click", function () {
     window.location.href = "study-field.html";
 });
 </script>
+<script src="theme.js"></script>
 </body>
 
 </html>
